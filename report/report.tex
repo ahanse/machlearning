@@ -1,0 +1,70 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+\title{Machine Learning - Exercise 1 }
+\author{Deniz Kocabas and Hans-Jörg Schurr}
+
+\maketitle
+\tableofcontents
+\newpage
+
+Our end report should contain:
+
+\begin{itemize}
+	\item Report should be around 10 pages
+	\item Full report of your work
+	\item Experiments, parameters tried
+	\item Characteristics of data sets \& pre-processing (i.e.
+handling of missing values, scaling etc.)
+	\item Characteristics of regression techniques
+    \item Explanation of choice for data sets \& techniques
+	\item Discuss experimental results, compare them in regard of
+the different datasets \& techniques (tables, figures)
+\end{itemize}
+
+\subsection{The chosen datasets}
+We had to pick three datasets, which should have different characteristics. 
+Our choice was:
+\begin{enumerate}
+    \item "Individual household electric power consumption Data Set"
+        (http://archive.ics.uci.edu/ml/datasets/Individual+household+electric+power+consumption)
+    \item "Solar Flare Data Set"
+        (http://archive.ics.uci.edu/ml/datasets/Solar+Flare)
+    \item "Wine Quality Data Set"
+        (http://archive.ics.uci.edu/ml/datasets/Wine+Quality)
+\end{enumerate}
+The household electric power consumption data set contains over two million
+instances and is by far the largest dataset among those three sets. The dataset
+has nine dimensions, whereby two fields are used for a time stamp. Thus it is a
+timeseries. All other fields contain numeric data. According to the
+documentation 1.25 percent of the rows contain missing values. We decided to use
+this dataset to test the performance of the methods. Given the high number of
+missing values, this dataset is suited to test different methods to handle those
+missing values.
+
+The solar flare data set is with roughly 1400 instances much smaller then the
+household electric power consumption data set. Every instance has ten fields,
+which contain mainly categorical data. Some of those map to numeric intervals
+(area of the spots). The set lacks missing values, therefore it is well suited
+to test various methods to handle categorical data.
+
+We decided to choose a set with medium size and mixed features as third set. The
+wine quality data set provided those requirements. It contains around 5000
+instances and no missing values. The twelve dimensions contain mainly numeric
+values. Most of those are chemical properties of the wines. The last field is
+the an assigned quality of the wine. It is natural number between one and ten.
+Given the fact, that it is not exactly measured it may behave like a
+categorical value.
+
+\subsection{Methods tried}
+
+\subsection{Experiments and results for the individual datasets}
+\subsubsection{The household electric power consumption data set}
+\subsubsection{The solar flare data set}
+\subsubsection{The wine quality data set}
+\subsubsection{Comparison}
+\subsection{Conclusion}
+
+\end{document}
