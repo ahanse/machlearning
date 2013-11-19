@@ -24,17 +24,29 @@ handling of missing values, scaling etc.)
 the different datasets \& techniques (tables, figures)
 \end{itemize}
 
-\subsection{The chosen datasets}
-We had to pick three datasets, which should have different characteristics. 
-Our choice was:
+\subsection{Introduction}
+The Data Intensive Science has become an indispensable aspect of the people's lives. We use it in many different areas to gain knowledge by analysis of integrated data. The overall goal of that assignment is to perform experiments with regression techniques in machine learning. Regression is the easiest technique to use, but also the least powerful. There are a number of independent variables, which, when taken together, produce a result a dependent variable. The regression model is then used to predict the result of an unknown dependent variable, given the values of the independent variables. 
+
+We had to pick three datasets from UCI Machine Learning Repository, which should have different characteristics. 
+Our choice was;
 \begin{enumerate}
-    \item "Individual household electric power consumption Data Set"
-        (http://archive.ics.uci.edu/ml/datasets/Individual+household+electric+power+consumption)
+    \item "Individual Household Electric Power Consumption Data Set" (http://archive.ics.uci.edu/ml/datasets/Individual+household+electric+power+consumption)
     \item "Solar Flare Data Set"
         (http://archive.ics.uci.edu/ml/datasets/Solar+Flare)
     \item "Wine Quality Data Set"
         (http://archive.ics.uci.edu/ml/datasets/Wine+Quality)
 \end{enumerate}
+
+We have used 4 different regression techniques by the tool Weka. 
+These techniques were;
+\begin{enumerate}
+    \item Simple Linear Regression
+    \item Linear Regression
+    \item SMOReg
+    \item M5P
+\end{enumerate}
+
+\subsection{The chosen datasets}
 The household electric power consumption data set contains over two million
 instances and is by far the largest dataset among those three sets. The dataset
 has nine dimensions, whereby two fields are used for a time stamp. Thus it is a
@@ -42,23 +54,44 @@ timeseries. All other fields contain numeric data. According to the
 documentation 1.25 percent of the rows contain missing values. We decided to use
 this dataset to test the performance of the methods. Given the high number of
 missing values, this dataset is suited to test different methods to handle those
-missing values.
+missing values. This dataset contains 3 class labels, which are sub-metering No. 1, 
+energy sub-metering No. 2,  energy sub-metering No. 3 represents the active energy 
+consumed every minute in watt hour. No. 1 corresponds to the kitchen, containing mainly 
+a dishwasher, an oven and a microwave (hot plates are not electric but gas powered). 
+No. 2 corresponds to the laundry room, containing a washing-machine, a tumble-drier, 
+a refrigerator and a light. And No. 3 corresponds to an electric water-heater and an air-conditioner. 
 
 The solar flare data set is with roughly 1400 instances much smaller then the
 household electric power consumption data set. Every instance has ten fields,
 which contain mainly categorical data. Some of those map to numeric intervals
 (area of the spots). The set lacks missing values, therefore it is well suited
-to test various methods to handle categorical data.
+to test various methods to handle categorical data. The database has 3 class labels, 
+one for the number times a certain type of solar flare occured in a 24 hour period. 
+These 3 class labels are C-class flares (common flares), M-class flares (moderate flares), 
+X-class flares (severe flares) production by this region in the following 24 hours. 
+Each instance represents captured features for 1 active region on the sun. 
+There are 2 files and the second file has had much more error correction applied to the it, 
+and has consequently been treated as more reliable. 
 
 We decided to choose a set with medium size and mixed features as third set. The
 wine quality data set provided those requirements. It contains around 5000
-instances and no missing values. The twelve dimensions contain mainly numeric
+instances and no missing values. The twelve attributes contain mainly numeric
 values. Most of those are chemical properties of the wines. The last field is
-the an assigned quality of the wine. It is natural number between one and ten.
+the class value is based on sensory data, median of at least 3 evaluations made by wine experts. 
+Each expert graded the wine quality  an assigned quality of the wine. It is natural number 
+between one (very bad) and ten (very excellent).
 Given the fact, that it is not exactly measured it may behave like a
-categorical value.
+categorical value. There are two dataset, one is for the red wine and the other for white wine.
 
 \subsection{Methods tried}
+
+    The Simple Linear Regression techniques is the Linear Regression with one variable. The algorithm in Weka picks the attribute with the lowest squared error. The algorithm can not deal with the missing values, so we need to preprocess before the algorithm and also just the numeric values should be in the attributes, otherwise weka can not use this algorithm. We should remove or preprocess these other types of dimensions.
+
+     The Linear Regression techniques is for the multiple variable. The algorithm in Weka uses the Akaike criterion. It is a measure of the relative quality of a statistical model, for a given set of data. As such, AIC provides a means for model selection. The algorithm is able to deal with weighted instances.
+
+     The algorithm SMOReg in weka is the support vector machine for regression. The parameters can be learned using various algorithms. The algorithm is selected by setting the RegOptimizer. This implementation globally replaces all missing values and transforms nominal attributes into binary ones. It also normalizes all attributes by default.
+
+     M5 Prunning(M5P)  is a non-linear regression, which implements base routines for generating M5 Model trees and rules. A model tree is a tree, where each leaf has got one of these linear regression model. It is like a patch work of linear models.  
 
 \subsection{Experiments and results for the individual datasets}
 \subsubsection{The household electric power consumption data set}
