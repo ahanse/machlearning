@@ -1,0 +1,43 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.LinearRegression -S 0 -R 1.0E-8
+Relation:     flare1-weka.filters.unsupervised.attribute.Remove-R11-12
+Instances:    323
+Attributes:   11
+              Code for class
+              Code for largest spot size
+              Code for spot distribution
+              Activity
+              Evolution
+              Previous 24 hour flare activity code
+              Historically-complex
+              Did region become historically complex on this pass across the sun's disk
+              Area
+              Area of the largest spot
+              X-class flares production by this region in the following 24 hours(severe flares)
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+
+Linear Regression Model
+
+X-class flares production by this region in the following 24 hours(severe flares) =
+
+      0.0334 * Code for class=H,D +
+      0.1165 * Code for spot distribution=C +
+      0.0271 * Historically-complex +
+     -0.038 
+
+Time taken to build model: 0.02 seconds
+
+=== Cross-validation ===
+=== Summary ===
+
+Correlation coefficient                  0.1028
+Mean absolute error                      0.0471
+Root mean squared error                  0.1469
+Relative absolute error                110.8797 %
+Root relative squared error            100.6607 %
+Total Number of Instances              323     
+

@@ -1,0 +1,49 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.LinearRegression -S 0 -R 1.0E-8
+Relation:     winequality-white
+Instances:    4898
+Attributes:   12
+              fixed acidity
+              volatile acidity
+              citric acid
+              residual sugar
+              chlorides
+              free sulfur dioxide
+              total sulfur dioxide
+              density
+              pH
+              sulphates
+              alcohol
+              quality
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+
+Linear Regression Model
+
+quality =
+
+      0.0681 * fixed acidity +
+     -1.8881 * volatile acidity +
+      0.0828 * residual sugar +
+      0.0033 * free sulfur dioxide +
+   -154.2913 * density +
+      0.6942 * pH +
+      0.6285 * sulphates +
+      0.1932 * alcohol +
+    154.1062
+
+Time taken to build model: 0.08 seconds
+
+=== Cross-validation ===
+=== Summary ===
+
+Correlation coefficient                  0.5257
+Mean absolute error                      0.5854
+Root mean squared error                  0.7534
+Relative absolute error                 87.2292 %
+Root relative squared error             85.0384 %
+Total Number of Instances             4898     
+

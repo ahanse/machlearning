@@ -1,6 +1,7 @@
 \documentclass[a4paper]{article}
 
 \usepackage[utf8]{inputenc}
+\usepackage{graphicx}
 
 \begin{document}
 \title{Machine Learning - Exercise 1 }
@@ -96,8 +97,160 @@ categorical value. There are two dataset, one is for the red wine and the other 
 \subsection{Experiments and results for the individual datasets}
 \subsubsection{The household electric power consumption data set}
 \subsubsection{The solar flare data set}
+The solar flare file contains 2 datase. We have chosen the smallest dataset, which has around 300 instances. (flare1.csv) This file has the smallest instance in our datasets. First we convert the file into excel file and upload it to weka. In this file, there are no missing values. So we do not need any preprocess method. In that dataset we have also some attributes are in nominativ type. And start the algorithms in the classify section of the weka. There are 3 class variable in that dataset, we calculate the regression model for the class X flares (severe flares) production by this region in the following 24 hours. 
+
+We have used the 10 folds Cross-validation techniques to split the data for test and train. It divides the dataset into 10 part and each 10 samples is retained as the validation data for testing the model, and the remaining 9 samples are used as training data. The cross-validation process is then repeated 10 times, with each of the 10 samples used exactly once as the validation data. The 10 results from the folds then can be averaged to produce a single estimation.  
+
+At first we have run the Simple Linear Regression techniques, which is the least powerful algorithm. This technique can just deal with the Numeric attributes. For this reason, we deleted the nominativ dimension from the dataset, which are the first 3 fields. It chooses the attribute Historically-complex, which hast the lowest squared error. Linear regression on Historically-complex model is; 
+
+$0.05 * Historically-complex - 0.04$\\
+
+After that we have used the Linear Regression techniques for the multiple variables. We added the nominativ attributes again to our dataset and run the algorihm. The technique choose some of the attributes for the regression model. The model is;\\
+
+$   X-class flares =   0.0334 * Code for class=H,D +
+      0.1165 * Code for spot distribution=C +
+      0.0271 * Historically-complex +
+     -0.038 $\\
+
+So the quality depends on these variables. We can see above that two nominativ attribute called "Code for class" and "Code for spot distribution" are in our linear regression model.
+
+The 3. technique is the SMOReg, the support vector machine for regression. In that technique all of the attributes have used in the model. We can see from the below that for the nominativ attribute all possible values are also in the model. Some of them has a negative marks, which can increase the class value, when we decrease these attributes. And for the positive weight, we need to increase.The model is;\\
+$weights (not support vectors):
+ -       0.0001 * (normalized) Code for class=C
+ +       0.0002 * (normalized) Code for class=D
+ +       0.0002 * (normalized) Code for class=B
+ +       0      * (normalized) Code for class=F
+ +       0.0002 * (normalized) Code for class=H
+ -       0.0006 * (normalized) Code for class=E
+ -       0.0002 * (normalized) Code for largest spot size=S
+ +       0.0004 * (normalized) Code for largest spot size=A
+ -       0.0001 * (normalized) Code for largest spot size=K
+ +       0.0002 * (normalized) Code for largest spot size=R
+ +       0.0002 * (normalized) Code for largest spot size=X
+ -       0.0005 * (normalized) Code for largest spot size=H
+ +       0.0002 * (normalized) Code for spot distribution=O
+ -       0.0007 * (normalized) Code for spot distribution=I
+ +       0.0002 * (normalized) Code for spot distribution=X
+ +       0.0002 * (normalized) Code for spot distribution=C
+ -       0.0006 * (normalized) Activity
+ +       0.0003 * (normalized) Evolution
+ +       0.0003 * (normalized) Previous 24 hour flare activity code
+ +       0.001  * (normalized) Historically-complex
+ +       0      * (normalized) Did region become historically complex on this pass across the sun's disk
+ +       0.0002 * (normalized) Area
+ +       0.0004 * (normalized) Area of the largest spot
+ -       0.0007$\\
+
+And the last one is the tree model, M5 Prunning(M5P). In that model we have many leaf of the trees, which has a different linear regression model. In solar flare file, the algorithm generate 2 leaf nodes.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=120mm]{tree}
+\caption{A simple caption}
+\label{overflow}
+\end{figure}
+
+That means, there are 2 different linear regression model, which have shown in the below.\\
+LM num: 1: \\
+$X-class flares = 
+	-0.0067 * Code for class=H,D 
+	+ 0.0093 * Code for class=D 
+	+ 0.0095 * Code for spot distribution=X,C 
+	+ 0.0022 * Historically-complex 
+	- 0.0031$\\
+LM num: 2:\\
+$X-class flares= 
+	-0.0074 * Code for class=H,D 
+	+ 0.1174 * Code for class=D 
+	+ 0.1292 * Code for spot distribution=X,C 
+	+ 0.0552 * Historically-complex 
+	- 0.1607$
+
 \subsubsection{The wine quality data set}
+
+The wine quality dataset contains 2 file, one is for the white wine and the other is red wine. We have chosen the white wine dataset, which has almost 5000 instances. First we convert the file to csv and upload it to weka. In this file, there are no missing values and all the attributes are real numbers. So we do not need any preprocess method. And start the algorithms in the clasify section of the weka. The class variable is quality attribute and its the number from one to ten. We have also used the 10 folds Cross-validation techniques to split the data for test and train. 
+
+At first we have run the Simple Linear Regression techniques, which is the least powerful algorithm. It chooses the attribute alcohol, which hast the lowest squared error. Linear regression on alcohol model is; 
+
+$0.31 * alcohol + 2.58$\\
+
+After that we have used the Linear Regression techniques for the multiple variables. The technique choose some of the attributes for the regression model. The model is;\\
+$quality =
+      0.0681 * fixed acidity +
+     -1.8881 * volatile acidity +
+      0.0828 * residual sugar +
+      0.0033 * free sulfur dioxide +
+   -154.2913 * density +
+      0.6942 * pH +
+      0.6285 * sulphates +
+      0.1932 * alcohol +
+    154.1062$\\
+
+So the quality depends on these variables above. Some of them has a negative marks, that means, if we decrease these attributes, we have better quality of wine. And for the positive weight, we need to increase.
+
+The 3. technique is the SMOReg, the support vector machine for regression. In that technique all of the attributes have used in the linear regression model. The model is;\\
+$weights (not support vectors):
+ +       0.0754 * (normalized) fixed acidity
+ -       0.3535 * (normalized) volatile acidity
+ -       0.0291 * (normalized) citric acid
+ +       0.7259 * (normalized) residual sugar
+ -       0.0609 * (normalized) chlorides
+ +       0.2402 * (normalized) free sulfur dioxide
+ -       0.049  * (normalized) total sulfur dioxide
+ -       0.9238 * (normalized) density
+ +       0.1421 * (normalized) pH
+ +       0.1072 * (normalized) sulphates
+ +       0.2417 * (normalized) alcohol
+ +       0.3849$\\
+
+And the last one is the tree model, M5 Prunning(M5P). In that model we have many leaf of the trees, which has a different linear regression model. In the wine quality dataset, the algorithm generate 55 leaf, different linear regression. It is quiet hard to show all of them and also the tree is a bit complicated in that dataset.
+
+
 \subsubsection{Comparison}
+
+\begin{table}
+\begin{tabular}{|l| c | c |c |c |c |}
+
+\hline & & & & & \\
+Data & Tech. & Time(s) & Correlation & Mean abs.  & Root mean \\
+ & & & coefficient & error & squared error  \\
+\hline & & & & &  \\
+1  & 1  &   &   &  &  \\ 
+\hline & & & & & \\
+1  & 2  &   &   &  &  \\ 
+\hline & & & & & \\
+1  & 3  &   &   &  &  \\ 
+\hline & & & & & \\
+1  & 4  &   &   &  &  \\ 
+\hline & & & & & \\
+2  & 1  & 0  & 0.0574  & 0.0425 & 0.146 \\ 
+\hline & & & & & \\
+2  & 2  & 0.02  &  0.1028 & 0.0471 & 0.1469  \\ 
+\hline & & & & & \\
+2  & 3  & 0.88  & -0.0092 & 0.0223 & 0.1472 \\ 
+\hline & & & & & \\
+2  & 4  & 0.11  & 0.0625  & 0.046   & 0.1497 \\ 
+\hline & & & & & \\
+3  & 1  & 0.26   & 0.4345  & 0.628   &  0.7976\\ 
+\hline & & & & & \\
+3  & 2  & 0.08  & 0.5257  & 0.5854 & 0.7534  \\ 
+\hline & & & & & \\
+3  & 3  & 94.03  &  0.5225  & 0.5841 & 0.7564 \\ 
+\hline & & & & & \\
+3  & 4  & 1.08  & 0.5866  & 0.5525  & 0.7188 \\ 
+\hline
+\end{tabular}
+\caption{\textbf{Results of the Regression Techniques}
+    Algorithm 1: Simple Linear Regression
+    Algorithm 2: Linear Regression
+    Algorithm 3: SMOReg
+    Algorithm 4: M5P
+    Dataset 1: "Individual Household Electric Power Consumption Data Set" 
+    Dataset 2: "Solar Flare Data Set"
+    Dataset 3: "Wine Quality Data Set"}
+\end{table}
+
+
 \subsection{Conclusion}
 
 \end{document}

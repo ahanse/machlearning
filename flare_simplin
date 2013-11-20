@@ -1,0 +1,35 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.SimpleLinearRegression 
+Relation:     flare1-weka.filters.unsupervised.attribute.Remove-R11-12-weka.filters.unsupervised.attribute.Remove-R1-3
+Instances:    323
+Attributes:   8
+              Activity
+              Evolution
+              Previous 24 hour flare activity code
+              Historically-complex
+              Did region become historically complex on this pass across the sun's disk
+              Area
+              Area of the largest spot
+              X-class flares production by this region in the following 24 hours(severe flares)
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+Linear regression on Historically-complex
+
+0.05 * Historically-complex - 0.04
+
+
+Time taken to build model: 0 seconds
+
+=== Cross-validation ===
+=== Summary ===
+
+Correlation coefficient                  0.0574
+Mean absolute error                      0.0425
+Root mean squared error                  0.146 
+Relative absolute error                 99.9811 %
+Root relative squared error            100.0826 %
+Total Number of Instances              323     
+

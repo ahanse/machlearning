@@ -1,0 +1,953 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.M5P -M 4.0
+Relation:     winequality-white
+Instances:    4898
+Attributes:   12
+              fixed acidity
+              volatile acidity
+              citric acid
+              residual sugar
+              chlorides
+              free sulfur dioxide
+              total sulfur dioxide
+              density
+              pH
+              sulphates
+              alcohol
+              quality
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+M5 pruned model tree:
+(using smoothed linear models)
+
+alcohol <= 10.85 : 
+|   volatile acidity <= 0.283 : 
+|   |   volatile acidity <= 0.208 : 
+|   |   |   residual sugar <= 12.575 : 
+|   |   |   |   free sulfur dioxide <= 25.5 : 
+|   |   |   |   |   residual sugar <= 2.95 : LM1 (127/77.651%)
+|   |   |   |   |   residual sugar >  2.95 : 
+|   |   |   |   |   |   total sulfur dioxide <= 92 : LM2 (17/0%)
+|   |   |   |   |   |   total sulfur dioxide >  92 : 
+|   |   |   |   |   |   |   alcohol <= 10.3 : LM3 (29/47.578%)
+|   |   |   |   |   |   |   alcohol >  10.3 : LM4 (15/66.397%)
+|   |   |   |   free sulfur dioxide >  25.5 : LM5 (393/74.992%)
+|   |   |   residual sugar >  12.575 : 
+|   |   |   |   alcohol <= 9.05 : 
+|   |   |   |   |   free sulfur dioxide <= 30.5 : LM6 (21/0%)
+|   |   |   |   |   free sulfur dioxide >  30.5 : 
+|   |   |   |   |   |   density <= 0.998 : LM7 (8/0%)
+|   |   |   |   |   |   density >  0.998 : 
+|   |   |   |   |   |   |   density <= 0.998 : LM8 (7/0%)
+|   |   |   |   |   |   |   density >  0.998 : 
+|   |   |   |   |   |   |   |   fixed acidity <= 7.15 : LM9 (8/37.346%)
+|   |   |   |   |   |   |   |   fixed acidity >  7.15 : 
+|   |   |   |   |   |   |   |   |   chlorides <= 0.056 : LM10 (9/81.289%)
+|   |   |   |   |   |   |   |   |   chlorides >  0.056 : LM11 (6/0%)
+|   |   |   |   alcohol >  9.05 : LM12 (91/58.694%)
+|   |   volatile acidity >  0.208 : 
+|   |   |   alcohol <= 9.85 : 
+|   |   |   |   residual sugar <= 12.65 : 
+|   |   |   |   |   chlorides <= 0.045 : 
+|   |   |   |   |   |   pH <= 3.275 : LM13 (116/60.469%)
+|   |   |   |   |   |   pH >  3.275 : LM14 (33/80.362%)
+|   |   |   |   |   chlorides >  0.045 : LM15 (296/62.13%)
+|   |   |   |   residual sugar >  12.65 : 
+|   |   |   |   |   residual sugar <= 15.05 : 
+|   |   |   |   |   |   density <= 0.999 : 
+|   |   |   |   |   |   |   chlorides <= 0.056 : 
+|   |   |   |   |   |   |   |   sulphates <= 0.445 : LM16 (13/53.547%)
+|   |   |   |   |   |   |   |   sulphates >  0.445 : 
+|   |   |   |   |   |   |   |   |   volatile acidity <= 0.265 : 
+|   |   |   |   |   |   |   |   |   |   residual sugar <= 13.25 : 
+|   |   |   |   |   |   |   |   |   |   |   total sulfur dioxide <= 167.25 : LM17 (4/29.624%)
+|   |   |   |   |   |   |   |   |   |   |   total sulfur dioxide >  167.25 : LM18 (5/0%)
+|   |   |   |   |   |   |   |   |   |   residual sugar >  13.25 : 
+|   |   |   |   |   |   |   |   |   |   |   chlorides <= 0.053 : LM19 (10/0%)
+|   |   |   |   |   |   |   |   |   |   |   chlorides >  0.053 : 
+|   |   |   |   |   |   |   |   |   |   |   |   fixed acidity <= 7.45 : LM20 (2/0%)
+|   |   |   |   |   |   |   |   |   |   |   |   fixed acidity >  7.45 : LM21 (2/0%)
+|   |   |   |   |   |   |   |   |   volatile acidity >  0.265 : LM22 (12/0%)
+|   |   |   |   |   |   |   chlorides >  0.056 : 
+|   |   |   |   |   |   |   |   chlorides <= 0.062 : 
+|   |   |   |   |   |   |   |   |   sulphates <= 0.47 : 
+|   |   |   |   |   |   |   |   |   |   fixed acidity <= 7.3 : LM23 (7/0%)
+|   |   |   |   |   |   |   |   |   |   fixed acidity >  7.3 : LM24 (2/0%)
+|   |   |   |   |   |   |   |   |   sulphates >  0.47 : LM25 (4/0%)
+|   |   |   |   |   |   |   |   chlorides >  0.062 : LM26 (13/0%)
+|   |   |   |   |   |   density >  0.999 : 
+|   |   |   |   |   |   |   density <= 0.999 : 
+|   |   |   |   |   |   |   |   residual sugar <= 14.2 : 
+|   |   |   |   |   |   |   |   |   citric acid <= 0.35 : LM27 (2/0%)
+|   |   |   |   |   |   |   |   |   citric acid >  0.35 : LM28 (4/0%)
+|   |   |   |   |   |   |   |   residual sugar >  14.2 : LM29 (8/0%)
+|   |   |   |   |   |   |   density >  0.999 : 
+|   |   |   |   |   |   |   |   pH <= 3.085 : LM30 (8/0%)
+|   |   |   |   |   |   |   |   pH >  3.085 : 
+|   |   |   |   |   |   |   |   |   total sulfur dioxide <= 182.5 : 
+|   |   |   |   |   |   |   |   |   |   sulphates <= 0.68 : 
+|   |   |   |   |   |   |   |   |   |   |   fixed acidity <= 8.5 : 
+|   |   |   |   |   |   |   |   |   |   |   |   free sulfur dioxide <= 43.25 : LM31 (5/0%)
+|   |   |   |   |   |   |   |   |   |   |   |   free sulfur dioxide >  43.25 : 
+|   |   |   |   |   |   |   |   |   |   |   |   |   fixed acidity <= 7.15 : LM32 (4/0%)
+|   |   |   |   |   |   |   |   |   |   |   |   |   fixed acidity >  7.15 : LM33 (2/0%)
+|   |   |   |   |   |   |   |   |   |   |   fixed acidity >  8.5 : LM34 (3/0%)
+|   |   |   |   |   |   |   |   |   |   sulphates >  0.68 : LM35 (7/0%)
+|   |   |   |   |   |   |   |   |   total sulfur dioxide >  182.5 : 
+|   |   |   |   |   |   |   |   |   |   citric acid <= 0.375 : LM36 (6/0%)
+|   |   |   |   |   |   |   |   |   |   citric acid >  0.375 : LM37 (3/0%)
+|   |   |   |   |   residual sugar >  15.05 : 
+|   |   |   |   |   |   total sulfur dioxide <= 131.5 : 
+|   |   |   |   |   |   |   sulphates <= 0.475 : LM38 (26/0%)
+|   |   |   |   |   |   |   sulphates >  0.475 : 
+|   |   |   |   |   |   |   |   fixed acidity <= 6.25 : LM39 (4/0%)
+|   |   |   |   |   |   |   |   fixed acidity >  6.25 : LM40 (7/0%)
+|   |   |   |   |   |   total sulfur dioxide >  131.5 : 
+|   |   |   |   |   |   |   total sulfur dioxide <= 150 : LM41 (32/0%)
+|   |   |   |   |   |   |   total sulfur dioxide >  150 : LM42 (83/69.564%)
+|   |   |   alcohol >  9.85 : 
+|   |   |   |   pH <= 3.325 : 
+|   |   |   |   |   free sulfur dioxide <= 27.5 : LM43 (130/73.807%)
+|   |   |   |   |   free sulfur dioxide >  27.5 : 
+|   |   |   |   |   |   sulphates <= 0.525 : LM44 (167/77.208%)
+|   |   |   |   |   |   sulphates >  0.525 : 
+|   |   |   |   |   |   |   total sulfur dioxide <= 172.5 : LM45 (65/62.966%)
+|   |   |   |   |   |   |   total sulfur dioxide >  172.5 : LM46 (26/63.239%)
+|   |   |   |   pH >  3.325 : 
+|   |   |   |   |   density <= 0.994 : LM47 (45/76.232%)
+|   |   |   |   |   density >  0.994 : LM48 (77/83.245%)
+|   volatile acidity >  0.283 : 
+|   |   free sulfur dioxide <= 20.5 : LM49 (243/71.159%)
+|   |   free sulfur dioxide >  20.5 : 
+|   |   |   alcohol <= 9.85 : 
+|   |   |   |   citric acid <= 0.235 : LM50 (165/53.83%)
+|   |   |   |   citric acid >  0.235 : LM51 (462/60.182%)
+|   |   |   alcohol >  9.85 : LM52 (251/66.801%)
+alcohol >  10.85 : 
+|   free sulfur dioxide <= 21.5 : 
+|   |   free sulfur dioxide <= 10.5 : LM53 (98/107.925%)
+|   |   free sulfur dioxide >  10.5 : LM54 (366/88.527%)
+|   free sulfur dioxide >  21.5 : LM55 (1349/83.105%)
+
+LM num: 1
+quality = 
+	0.0336 * fixed acidity 
+	- 0.2924 * volatile acidity 
+	- 0.0222 * citric acid 
+	+ 0.0288 * residual sugar 
+	+ 0.3607 * chlorides 
+	+ 0.0384 * free sulfur dioxide 
+	- 0.0038 * total sulfur dioxide 
+	- 51.8314 * density 
+	+ 0.7292 * pH 
+	+ 0.1396 * sulphates 
+	+ 0.2479 * alcohol 
+	+ 51.6014
+
+LM num: 2
+quality = 
+	0.1562 * fixed acidity 
+	- 0.2924 * volatile acidity 
+	- 1.3932 * citric acid 
+	+ 0.0409 * residual sugar 
+	- 6.7054 * chlorides 
+	+ 0.0046 * free sulfur dioxide 
+	- 70.8129 * density 
+	+ 0.6557 * pH 
+	+ 0.1396 * sulphates 
+	- 0.004 * alcohol 
+	+ 73.6486
+
+LM num: 3
+quality = 
+	0.2125 * fixed acidity 
+	+ 4.0183 * volatile acidity 
+	- 0.7441 * citric acid 
+	+ 0.0409 * residual sugar 
+	- 9.9275 * chlorides 
+	+ 0.0046 * free sulfur dioxide 
+	- 70.8129 * density 
+	+ 0.7846 * pH 
+	+ 0.1396 * sulphates 
+	- 0.004 * alcohol 
+	+ 72.1055
+
+LM num: 4
+quality = 
+	0.2625 * fixed acidity 
+	- 0.2924 * volatile acidity 
+	- 3.9978 * citric acid 
+	+ 0.0409 * residual sugar 
+	- 41.4714 * chlorides 
+	+ 0.0046 * free sulfur dioxide 
+	- 70.8129 * density 
+	+ 0.9107 * pH 
+	+ 0.1396 * sulphates 
+	- 0.004 * alcohol 
+	+ 74.4148
+
+LM num: 5
+quality = 
+	0.2232 * fixed acidity 
+	- 3.1992 * volatile acidity 
+	- 0.0222 * citric acid 
+	+ 0.1143 * residual sugar 
+	+ 3.4432 * chlorides 
+	+ 0.0002 * free sulfur dioxide 
+	- 0.0026 * total sulfur dioxide 
+	- 257.0831 * density 
+	+ 0.7719 * pH 
+	+ 1.61 * sulphates 
+	- 0.004 * alcohol 
+	+ 257.0153
+
+LM num: 6
+quality = 
+	0.3587 * fixed acidity 
+	+ 0.903 * volatile acidity 
+	- 0.2719 * citric acid 
+	+ 0.0136 * residual sugar 
+	+ 16.8484 * chlorides 
+	+ 0 * free sulfur dioxide 
+	- 189.0048 * density 
+	+ 0.0807 * pH 
+	+ 0.1184 * sulphates 
+	- 0.1169 * alcohol 
+	+ 192.6171
+
+LM num: 7
+quality = 
+	0.5325 * fixed acidity 
+	+ 0.903 * volatile acidity 
+	- 0.2719 * citric acid 
+	+ 0.0136 * residual sugar 
+	+ 27.622 * chlorides 
+	+ 0 * free sulfur dioxide 
+	- 294.3859 * density 
+	+ 0.0807 * pH 
+	+ 0.1184 * sulphates 
+	- 0.1169 * alcohol 
+	+ 296.2413
+
+LM num: 8
+quality = 
+	0.5712 * fixed acidity 
+	+ 0.903 * volatile acidity 
+	- 0.2719 * citric acid 
+	+ 0.0136 * residual sugar 
+	+ 20.6481 * chlorides 
+	+ 0 * free sulfur dioxide 
+	- 289.2918 * density 
+	+ 0.0807 * pH 
+	+ 0.1184 * sulphates 
+	- 0.1169 * alcohol 
+	+ 291.0333
+
+LM num: 9
+quality = 
+	0.5835 * fixed acidity 
+	+ 0.903 * volatile acidity 
+	- 0.2719 * citric acid 
+	+ 0.0136 * residual sugar 
+	+ 20.6481 * chlorides 
+	+ 0 * free sulfur dioxide 
+	- 262.6856 * density 
+	+ 0.0807 * pH 
+	+ 0.1184 * sulphates 
+	- 0.1169 * alcohol 
+	+ 264.2648
+
+LM num: 10
+quality = 
+	0.5649 * fixed acidity 
+	+ 0.903 * volatile acidity 
+	- 0.2719 * citric acid 
+	+ 0.0136 * residual sugar 
+	+ 26.537 * chlorides 
+	+ 0 * free sulfur dioxide 
+	- 0.0015 * total sulfur dioxide 
+	- 262.6856 * density 
+	+ 0.0807 * pH 
+	+ 0.1184 * sulphates 
+	- 0.1169 * alcohol 
+	+ 264.4271
+
+LM num: 11
+quality = 
+	0.5649 * fixed acidity 
+	+ 0.903 * volatile acidity 
+	- 0.2719 * citric acid 
+	+ 0.0136 * residual sugar 
+	+ 27.3783 * chlorides 
+	+ 0 * free sulfur dioxide 
+	- 262.6856 * density 
+	+ 0.0807 * pH 
+	+ 0.1184 * sulphates 
+	- 0.1169 * alcohol 
+	+ 264.1827
+
+LM num: 12
+quality = 
+	0.0928 * fixed acidity 
+	+ 0.5955 * volatile acidity 
+	- 0.2088 * citric acid 
+	+ 0.0136 * residual sugar 
+	+ 25.004 * chlorides 
+	+ 0 * free sulfur dioxide 
+	+ 0.0031 * total sulfur dioxide 
+	- 64.9086 * density 
+	+ 0.0807 * pH 
+	+ 0.1184 * sulphates 
+	+ 0.0703 * alcohol 
+	+ 67.4458
+
+LM num: 13
+quality = 
+	0.0132 * fixed acidity 
+	- 6.3384 * volatile acidity 
+	- 0.004 * citric acid 
+	+ 0.0645 * residual sugar 
+	+ 0.2219 * chlorides 
+	- 0.0011 * free sulfur dioxide 
+	+ 0.0004 * total sulfur dioxide 
+	- 159.7262 * density 
+	+ 0.0278 * pH 
+	+ 0.057 * sulphates 
+	+ 0.1049 * alcohol 
+	+ 164.4112
+
+LM num: 14
+quality = 
+	0.0132 * fixed acidity 
+	- 0.5499 * volatile acidity 
+	- 0.004 * citric acid 
+	+ 0.0331 * residual sugar 
+	+ 32.4025 * chlorides 
+	- 0.0147 * free sulfur dioxide 
+	+ 0.001 * total sulfur dioxide 
+	- 63.4294 * density 
+	+ 0.0278 * pH 
+	+ 0.057 * sulphates 
+	+ 1.256 * alcohol 
+	+ 55.8515
+
+LM num: 15
+quality = 
+	0.0108 * fixed acidity 
+	- 2.8479 * volatile acidity 
+	- 0.004 * citric acid 
+	+ 0.0091 * residual sugar 
+	+ 0.155 * chlorides 
+	+ 0.0124 * free sulfur dioxide 
+	- 0.0019 * total sulfur dioxide 
+	- 91.1062 * density 
+	+ 0.0278 * pH 
+	+ 0.057 * sulphates 
+	+ 0.0175 * alcohol 
+	+ 96.1052
+
+LM num: 16
+quality = 
+	0.2524 * fixed acidity 
+	+ 3.7939 * volatile acidity 
+	- 0.2162 * citric acid 
+	+ 0.1767 * residual sugar 
+	- 6.674 * chlorides 
+	- 0.0011 * free sulfur dioxide 
+	+ 0.0006 * total sulfur dioxide 
+	- 9.0127 * density 
+	- 0.0544 * pH 
+	+ 0.0684 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 9.9374
+
+LM num: 17
+quality = 
+	0.2125 * fixed acidity 
+	+ 4.3001 * volatile acidity 
+	- 0.1228 * citric acid 
+	+ 0.2029 * residual sugar 
+	- 3.9577 * chlorides 
+	- 0.0011 * free sulfur dioxide 
+	- 0.0002 * total sulfur dioxide 
+	- 9.0127 * density 
+	- 0.0544 * pH 
+	+ 0.0684 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 9.8308
+
+LM num: 18
+quality = 
+	0.2 * fixed acidity 
+	+ 4.3001 * volatile acidity 
+	- 0.1228 * citric acid 
+	+ 0.2029 * residual sugar 
+	- 3.9577 * chlorides 
+	- 0.0011 * free sulfur dioxide 
+	- 0.0001 * total sulfur dioxide 
+	- 9.0127 * density 
+	- 0.0544 * pH 
+	+ 0.0684 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 9.8961
+
+LM num: 19
+quality = 
+	0.2 * fixed acidity 
+	+ 4.3001 * volatile acidity 
+	- 0.1228 * citric acid 
+	+ 0.198 * residual sugar 
+	- 6.9238 * chlorides 
+	- 0.0011 * free sulfur dioxide 
+	+ 0.0006 * total sulfur dioxide 
+	- 9.0127 * density 
+	- 0.0544 * pH 
+	+ 0.0684 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 10.0473
+
+LM num: 20
+quality = 
+	0.216 * fixed acidity 
+	+ 4.3001 * volatile acidity 
+	- 0.1228 * citric acid 
+	+ 0.198 * residual sugar 
+	- 7.8604 * chlorides 
+	- 0.0011 * free sulfur dioxide 
+	+ 0.0006 * total sulfur dioxide 
+	- 9.0127 * density 
+	- 0.0544 * pH 
+	+ 0.0684 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 9.9604
+
+LM num: 21
+quality = 
+	0.216 * fixed acidity 
+	+ 4.3001 * volatile acidity 
+	- 0.1228 * citric acid 
+	+ 0.198 * residual sugar 
+	- 7.8604 * chlorides 
+	- 0.0011 * free sulfur dioxide 
+	+ 0.0006 * total sulfur dioxide 
+	- 9.0127 * density 
+	- 0.0544 * pH 
+	+ 0.0684 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 9.963
+
+LM num: 22
+quality = 
+	0.2 * fixed acidity 
+	+ 4.911 * volatile acidity 
+	- 0.1228 * citric acid 
+	+ 0.1877 * residual sugar 
+	- 3.9577 * chlorides 
+	- 0.0011 * free sulfur dioxide 
+	+ 0.0006 * total sulfur dioxide 
+	- 9.0127 * density 
+	- 0.0544 * pH 
+	+ 0.0684 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 9.9252
+
+LM num: 23
+quality = 
+	-0.4953 * fixed acidity 
+	+ 2.0389 * volatile acidity 
+	- 0.004 * citric acid 
+	+ 0.1245 * residual sugar 
+	- 0.5005 * chlorides 
+	- 0.0011 * free sulfur dioxide 
+	+ 0.0006 * total sulfur dioxide 
+	- 9.0127 * density 
+	- 0.0544 * pH 
+	+ 4.949 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 14.2031
+
+LM num: 24
+quality = 
+	-0.5286 * fixed acidity 
+	+ 2.0389 * volatile acidity 
+	- 0.004 * citric acid 
+	+ 0.1245 * residual sugar 
+	- 0.5005 * chlorides 
+	- 0.0011 * free sulfur dioxide 
+	+ 0.0006 * total sulfur dioxide 
+	- 9.0127 * density 
+	- 0.0544 * pH 
+	+ 4.949 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 14.4308
+
+LM num: 25
+quality = 
+	-0.4643 * fixed acidity 
+	+ 2.0389 * volatile acidity 
+	- 0.004 * citric acid 
+	+ 0.1245 * residual sugar 
+	- 0.5005 * chlorides 
+	- 0.0011 * free sulfur dioxide 
+	+ 0.0006 * total sulfur dioxide 
+	- 9.0127 * density 
+	- 0.0544 * pH 
+	+ 5.8489 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 13.6304
+
+LM num: 26
+quality = 
+	-0.0687 * fixed acidity 
+	+ 2.0389 * volatile acidity 
+	- 0.004 * citric acid 
+	+ 0.1245 * residual sugar 
+	- 0.5005 * chlorides 
+	- 0.0011 * free sulfur dioxide 
+	+ 0.0006 * total sulfur dioxide 
+	- 9.0127 * density 
+	- 0.0544 * pH 
+	+ 1.5292 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 12.6794
+
+LM num: 27
+quality = 
+	0.072 * fixed acidity 
+	+ 0.9101 * volatile acidity 
+	+ 2.2109 * citric acid 
+	+ 0.3163 * residual sugar 
+	- 0.5005 * chlorides 
+	- 0.0088 * free sulfur dioxide 
+	+ 0.0042 * total sulfur dioxide 
+	- 9.0127 * density 
+	- 0.0544 * pH 
+	+ 0.0684 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 9.1786
+
+LM num: 28
+quality = 
+	0.072 * fixed acidity 
+	+ 0.9101 * volatile acidity 
+	+ 2.1304 * citric acid 
+	+ 0.3163 * residual sugar 
+	- 0.5005 * chlorides 
+	- 0.0088 * free sulfur dioxide 
+	+ 0.0042 * total sulfur dioxide 
+	- 9.0127 * density 
+	- 0.0544 * pH 
+	+ 0.0684 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 9.2188
+
+LM num: 29
+quality = 
+	0.072 * fixed acidity 
+	+ 0.9101 * volatile acidity 
+	+ 1.3193 * citric acid 
+	+ 0.3089 * residual sugar 
+	- 0.5005 * chlorides 
+	- 0.0088 * free sulfur dioxide 
+	+ 0.0042 * total sulfur dioxide 
+	- 9.0127 * density 
+	- 0.0544 * pH 
+	+ 0.0684 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 9.6209
+
+LM num: 30
+quality = 
+	0.1642 * fixed acidity 
+	+ 0.9101 * volatile acidity 
+	+ 1.2122 * citric acid 
+	+ 0.1552 * residual sugar 
+	- 0.5005 * chlorides 
+	- 0.0103 * free sulfur dioxide 
+	+ 0.0027 * total sulfur dioxide 
+	- 9.0127 * density 
+	- 0.0544 * pH 
+	+ 0.6446 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 10.7649
+
+LM num: 31
+quality = 
+	0.2134 * fixed acidity 
+	+ 0.9101 * volatile acidity 
+	+ 1.2567 * citric acid 
+	+ 0.1552 * residual sugar 
+	- 0.5005 * chlorides 
+	- 0.0003 * free sulfur dioxide 
+	+ 0.0027 * total sulfur dioxide 
+	- 9.0127 * density 
+	- 0.0544 * pH 
+	+ 0.7055 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 9.946
+
+LM num: 32
+quality = 
+	0.2329 * fixed acidity 
+	+ 0.9101 * volatile acidity 
+	+ 1.2567 * citric acid 
+	+ 0.1552 * residual sugar 
+	- 0.5005 * chlorides 
+	- 0.0003 * free sulfur dioxide 
+	+ 0.0027 * total sulfur dioxide 
+	- 9.0127 * density 
+	- 0.0544 * pH 
+	+ 0.7055 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 9.8239
+
+LM num: 33
+quality = 
+	0.2352 * fixed acidity 
+	+ 0.9101 * volatile acidity 
+	+ 1.2567 * citric acid 
+	+ 0.1552 * residual sugar 
+	- 0.5005 * chlorides 
+	- 0.0003 * free sulfur dioxide 
+	+ 0.0027 * total sulfur dioxide 
+	- 9.0127 * density 
+	- 0.0544 * pH 
+	+ 0.7055 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 9.8092
+
+LM num: 34
+quality = 
+	0.2272 * fixed acidity 
+	+ 0.9101 * volatile acidity 
+	+ 1.2567 * citric acid 
+	+ 0.1552 * residual sugar 
+	- 0.5005 * chlorides 
+	- 0.0008 * free sulfur dioxide 
+	+ 0.0027 * total sulfur dioxide 
+	- 9.0127 * density 
+	- 0.0544 * pH 
+	+ 0.7055 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 9.8955
+
+LM num: 35
+quality = 
+	0.2025 * fixed acidity 
+	+ 0.9101 * volatile acidity 
+	+ 1.2567 * citric acid 
+	+ 0.1552 * residual sugar 
+	- 0.5005 * chlorides 
+	- 0.0032 * free sulfur dioxide 
+	+ 0.0027 * total sulfur dioxide 
+	- 9.0127 * density 
+	- 0.0544 * pH 
+	+ 0.7055 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 10.2202
+
+LM num: 36
+quality = 
+	0.1191 * fixed acidity 
+	+ 0.9101 * volatile acidity 
+	+ 1.8798 * citric acid 
+	+ 0.1552 * residual sugar 
+	- 0.5005 * chlorides 
+	- 0.0138 * free sulfur dioxide 
+	+ 0.0027 * total sulfur dioxide 
+	- 9.0127 * density 
+	- 0.0544 * pH 
+	+ 0.8768 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 10.818
+
+LM num: 37
+quality = 
+	0.1191 * fixed acidity 
+	+ 0.9101 * volatile acidity 
+	+ 1.9304 * citric acid 
+	+ 0.1552 * residual sugar 
+	- 0.5005 * chlorides 
+	- 0.0138 * free sulfur dioxide 
+	+ 0.0027 * total sulfur dioxide 
+	- 9.0127 * density 
+	- 0.0544 * pH 
+	+ 0.8768 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 10.8241
+
+LM num: 38
+quality = 
+	-0.1201 * fixed acidity 
+	- 1.2894 * volatile acidity 
+	- 0.004 * citric acid 
+	- 0.0016 * residual sugar 
+	- 2.8182 * chlorides 
+	+ 0 * free sulfur dioxide 
+	- 10.0117 * density 
+	- 0.2678 * pH 
+	- 1.5794 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 18.6032
+
+LM num: 39
+quality = 
+	-0.2708 * fixed acidity 
+	- 1.2894 * volatile acidity 
+	- 0.004 * citric acid 
+	- 0.0016 * residual sugar 
+	- 2.8182 * chlorides 
+	+ 0 * free sulfur dioxide 
+	- 10.0117 * density 
+	- 0.2678 * pH 
+	- 2.5301 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 19.8927
+
+LM num: 40
+quality = 
+	-0.2563 * fixed acidity 
+	- 1.2894 * volatile acidity 
+	- 0.004 * citric acid 
+	- 0.0016 * residual sugar 
+	- 2.8182 * chlorides 
+	+ 0 * free sulfur dioxide 
+	- 10.0117 * density 
+	- 0.2678 * pH 
+	- 2.5301 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 19.7332
+
+LM num: 41
+quality = 
+	-0.0115 * fixed acidity 
+	- 0.7223 * volatile acidity 
+	- 0.004 * citric acid 
+	- 0.0016 * residual sugar 
+	- 3.6614 * chlorides 
+	+ 0 * free sulfur dioxide 
+	- 10.0117 * density 
+	- 0.1321 * pH 
+	+ 0.0684 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 16.0749
+
+LM num: 42
+quality = 
+	-0.0115 * fixed acidity 
+	- 4.5975 * volatile acidity 
+	- 0.004 * citric acid 
+	- 0.0016 * residual sugar 
+	- 11.6292 * chlorides 
+	+ 0 * free sulfur dioxide 
+	- 10.0117 * density 
+	- 0.1321 * pH 
+	- 1.0566 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 18.2542
+
+LM num: 43
+quality = 
+	0.0136 * fixed acidity 
+	- 5.5588 * volatile acidity 
+	- 0.004 * citric acid 
+	+ 0.0488 * residual sugar 
+	+ 0.0274 * chlorides 
+	+ 0.0132 * free sulfur dioxide 
+	- 148.7779 * density 
+	+ 0.0886 * pH 
+	+ 0.1687 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 153.8403
+
+LM num: 44
+quality = 
+	0.0136 * fixed acidity 
+	- 4.1623 * volatile acidity 
+	- 0.004 * citric acid 
+	+ 0.0094 * residual sugar 
+	- 0.5097 * chlorides 
+	+ 0.0002 * free sulfur dioxide 
+	- 0.0002 * total sulfur dioxide 
+	- 23.2666 * density 
+	+ 0.0886 * pH 
+	+ 0.2333 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 29.3753
+
+LM num: 45
+quality = 
+	0.0136 * fixed acidity 
+	- 1.6725 * volatile acidity 
+	- 0.004 * citric acid 
+	+ 0.0164 * residual sugar 
+	- 13.3806 * chlorides 
+	+ 0.0002 * free sulfur dioxide 
+	- 0.0012 * total sulfur dioxide 
+	- 35.2451 * density 
+	+ 0.0886 * pH 
+	+ 0.3083 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 41.6924
+
+LM num: 46
+quality = 
+	0.0136 * fixed acidity 
+	- 2.3622 * volatile acidity 
+	- 0.004 * citric acid 
+	+ 0.0231 * residual sugar 
+	- 5.0267 * chlorides 
+	+ 0.0002 * free sulfur dioxide 
+	- 0.0019 * total sulfur dioxide 
+	- 46.6393 * density 
+	+ 0.0886 * pH 
+	+ 0.3083 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 52.5661
+
+LM num: 47
+quality = 
+	0.0958 * fixed acidity 
+	- 0.4684 * volatile acidity 
+	+ 2.9888 * citric acid 
+	+ 0.17 * residual sugar 
+	+ 0.0274 * chlorides 
+	- 0.0011 * free sulfur dioxide 
+	- 0.0066 * total sulfur dioxide 
+	- 116.0895 * density 
+	+ 0.1952 * pH 
+	+ 0.1603 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 120.1991
+
+LM num: 48
+quality = 
+	0.072 * fixed acidity 
+	- 0.4684 * volatile acidity 
+	- 0.004 * citric acid 
+	+ 0.0272 * residual sugar 
+	+ 0.0274 * chlorides 
+	+ 0.0108 * free sulfur dioxide 
+	- 88.7785 * density 
+	- 1.1684 * pH 
+	+ 0.1603 * sulphates 
+	+ 0.0009 * alcohol 
+	+ 97.247
+
+LM num: 49
+quality = 
+	0.1335 * fixed acidity 
+	- 0.9812 * volatile acidity 
+	+ 0.014 * citric acid 
+	+ 0.1021 * residual sugar 
+	- 0.0516 * chlorides 
+	+ 0.0313 * free sulfur dioxide 
+	+ 0.0029 * total sulfur dioxide 
+	- 306.7816 * density 
+	+ 1.4085 * pH 
+	+ 1.0316 * sulphates 
+	- 0.1888 * alcohol 
+	+ 305.2406
+
+LM num: 50
+quality = 
+	-0.0042 * fixed acidity 
+	- 0.1751 * volatile acidity 
+	+ 0.0352 * citric acid 
+	+ 0.0027 * residual sugar 
+	- 0.19 * chlorides 
+	+ 0.0068 * free sulfur dioxide 
+	- 0 * total sulfur dioxide 
+	- 1.99 * density 
+	- 0.6437 * pH 
+	+ 0.0182 * sulphates 
+	+ 0.0316 * alcohol 
+	+ 8.6482
+
+LM num: 51
+quality = 
+	-0.1349 * fixed acidity 
+	- 1.6249 * volatile acidity 
+	+ 0.0212 * citric acid 
+	- 0.0195 * residual sugar 
+	- 1.9931 * chlorides 
+	- 0.0034 * free sulfur dioxide 
+	- 0 * total sulfur dioxide 
+	+ 81.6714 * density 
+	+ 0.0312 * pH 
+	+ 0.0182 * sulphates 
+	+ 0.2681 * alcohol 
+	- 76.6941
+
+LM num: 52
+quality = 
+	-0.0015 * fixed acidity 
+	- 0.945 * volatile acidity 
+	+ 0.6862 * citric acid 
+	+ 0.0713 * residual sugar 
+	- 0.0909 * chlorides 
+	+ 0.0001 * free sulfur dioxide 
+	- 0.0045 * total sulfur dioxide 
+	- 126.3128 * density 
+	+ 1.1068 * pH 
+	+ 0.0182 * sulphates 
+	+ 0.018 * alcohol 
+	+ 127.8105
+
+LM num: 53
+quality = 
+	-0.0181 * fixed acidity 
+	- 0.3309 * volatile acidity 
+	+ 1.859 * citric acid 
+	+ 0.1506 * residual sugar 
+	- 0.1628 * chlorides 
+	+ 0.007 * free sulfur dioxide 
+	- 208.2544 * density 
+	+ 0.0389 * pH 
+	+ 1.5397 * sulphates 
+	+ 0.038 * alcohol 
+	+ 209.5834
+
+LM num: 54
+quality = 
+	-0.0036 * fixed acidity 
+	- 2.0544 * volatile acidity 
+	+ 0.1239 * residual sugar 
+	- 0.1628 * chlorides 
+	+ 0.0023 * free sulfur dioxide 
+	- 280.4434 * density 
+	+ 0.9362 * pH 
+	+ 0.0287 * sulphates 
+	+ 0.0163 * alcohol 
+	+ 281.1018
+
+LM num: 55
+quality = 
+	0.154 * fixed acidity 
+	- 0.497 * volatile acidity 
+	+ 0.1111 * residual sugar 
+	- 6.8949 * chlorides 
+	+ 0.0001 * free sulfur dioxide 
+	- 218.6074 * density 
+	+ 1.3863 * pH 
+	+ 1.1006 * sulphates 
+	+ 0.0966 * alcohol 
+	+ 215.9756
+
+Number of Rules : 55
+
+Time taken to build model: 1.08 seconds
+
+=== Cross-validation ===
+=== Summary ===
+
+Correlation coefficient                  0.5866
+Mean absolute error                      0.5525
+Root mean squared error                  0.7188
+Relative absolute error                 82.3297 %
+Root relative squared error             81.1384 %
+Total Number of Instances             4898     
+

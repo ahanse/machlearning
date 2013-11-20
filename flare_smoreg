@@ -1,0 +1,65 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.SMOreg -C 1.0 -N 0 -I "weka.classifiers.functions.supportVector.RegSMOImproved -L 0.001 -W 1 -P 1.0E-12 -T 0.001 -V" -K "weka.classifiers.functions.supportVector.PolyKernel -C 250007 -E 1.0"
+Relation:     flare1-weka.filters.unsupervised.attribute.Remove-R11-12
+Instances:    323
+Attributes:   11
+              Code for class
+              Code for largest spot size
+              Code for spot distribution
+              Activity
+              Evolution
+              Previous 24 hour flare activity code
+              Historically-complex
+              Did region become historically complex on this pass across the sun's disk
+              Area
+              Area of the largest spot
+              X-class flares production by this region in the following 24 hours(severe flares)
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+SMOreg
+
+weights (not support vectors):
+ -       0.0001 * (normalized) Code for class=C
+ +       0.0002 * (normalized) Code for class=D
+ +       0.0002 * (normalized) Code for class=B
+ +       0      * (normalized) Code for class=F
+ +       0.0002 * (normalized) Code for class=H
+ -       0.0006 * (normalized) Code for class=E
+ -       0.0002 * (normalized) Code for largest spot size=S
+ +       0.0004 * (normalized) Code for largest spot size=A
+ -       0.0001 * (normalized) Code for largest spot size=K
+ +       0.0002 * (normalized) Code for largest spot size=R
+ +       0.0002 * (normalized) Code for largest spot size=X
+ -       0.0005 * (normalized) Code for largest spot size=H
+ +       0.0002 * (normalized) Code for spot distribution=O
+ -       0.0007 * (normalized) Code for spot distribution=I
+ +       0.0002 * (normalized) Code for spot distribution=X
+ +       0.0002 * (normalized) Code for spot distribution=C
+ -       0.0006 * (normalized) Activity
+ +       0.0003 * (normalized) Evolution
+ +       0.0003 * (normalized) Previous 24 hour flare activity code
+ +       0.001  * (normalized) Historically-complex
+ +       0      * (normalized) Did region become historically complex on this pass across the sun's disk
+ +       0.0002 * (normalized) Area
+ +       0.0004 * (normalized) Area of the largest spot
+ -       0.0007
+
+
+
+Number of kernel evaluations: 41033 (98.54% cached)
+
+Time taken to build model: 0.88 seconds
+
+=== Cross-validation ===
+=== Summary ===
+
+Correlation coefficient                 -0.0092
+Mean absolute error                      0.0223
+Root mean squared error                  0.1472
+Relative absolute error                 52.4603 %
+Root relative squared error            100.8484 %
+Total Number of Instances              323     
+

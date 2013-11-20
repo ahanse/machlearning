@@ -1,0 +1,57 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.trees.M5P -M 4.0
+Relation:     flare1-weka.filters.unsupervised.attribute.Remove-R11-12
+Instances:    323
+Attributes:   11
+              Code for class
+              Code for largest spot size
+              Code for spot distribution
+              Activity
+              Evolution
+              Previous 24 hour flare activity code
+              Historically-complex
+              Did region become historically complex on this pass across the sun's disk
+              Area
+              Area of the largest spot
+              X-class flares production by this region in the following 24 hours(severe flares)
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+M5 pruned model tree:
+(using smoothed linear models)
+
+Code for class=H,D <= 0.5 : LM1 (170/0%)
+Code for class=H,D >  0.5 : LM2 (153/138.427%)
+
+LM num: 1
+X-class flares production by this region in the following 24 hours(severe flares) = 
+	-0.0067 * Code for class=H,D 
+	+ 0.0093 * Code for class=D 
+	+ 0.0095 * Code for spot distribution=X,C 
+	+ 0.0022 * Historically-complex 
+	- 0.0031
+
+LM num: 2
+X-class flares production by this region in the following 24 hours(severe flares) = 
+	-0.0074 * Code for class=H,D 
+	+ 0.1174 * Code for class=D 
+	+ 0.1292 * Code for spot distribution=X,C 
+	+ 0.0552 * Historically-complex 
+	- 0.1607
+
+Number of Rules : 2
+
+Time taken to build model: 0.11 seconds
+
+=== Cross-validation ===
+=== Summary ===
+
+Correlation coefficient                  0.0625
+Mean absolute error                      0.046 
+Root mean squared error                  0.1497
+Relative absolute error                108.1527 %
+Root relative squared error            102.604  %
+Total Number of Instances              323     
+
