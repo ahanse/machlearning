@@ -11,30 +11,16 @@
 \tableofcontents
 \newpage
 
-Our end report should contain:
-
-\begin{itemize}
-	\item Report should be around 10 pages
-	\item Full report of your work
-	\item Experiments, parameters tried
-	\item Characteristics of data sets \& pre-processing (i.e.
-handling of missing values, scaling etc.)
-	\item Characteristics of regression techniques
-    \item Explanation of choice for data sets \& techniques
-	\item Discuss experimental results, compare them in regard of
-the different datasets \& techniques (tables, figures)
-\end{itemize}
-
 \subsection{Introduction}
 The Data Intensive Science has become an indispensable aspect of the people's lives. We use it in many different areas to gain knowledge by analysis of integrated data. The overall goal of that assignment is to perform experiments with regression techniques in machine learning. Regression is the easiest technique to use, but also the least powerful. There are a number of independent variables, which, when taken together, produce a result a dependent variable. The regression model is then used to predict the result of an unknown dependent variable, given the values of the independent variables. 
 
 We had to pick three datasets from UCI Machine Learning Repository, which should have different characteristics. 
 Our choice was;
 \begin{enumerate}
-    \item "Individual Household Electric Power Consumption Data Set" (http://archive.ics.uci.edu/ml/datasets/Individual+household+electric+power+consumption)
-    \item "Solar Flare Data Set"
+    \item "Individual Household Electric Power Consumption Data Set" \\ (http://archive.ics.uci.edu/ml/datasets/Individual+household+electric+power+consumption)
+    \item "Solar Flare Data Set" \\
         (http://archive.ics.uci.edu/ml/datasets/Solar+Flare)
-    \item "Wine Quality Data Set"
+    \item "Wine Quality Data Set" \\
         (http://archive.ics.uci.edu/ml/datasets/Wine+Quality)
 \end{enumerate}
 
@@ -86,9 +72,13 @@ categorical value. There are two dataset, one is for the red wine and the other 
 
 \subsection{Methods tried}
 
-    The Simple Linear Regression techniques is the Linear Regression with one variable. The algorithm in Weka picks the attribute with the lowest squared error. The algorithm can not deal with the missing values, so we need to preprocess before the algorithm and also just the numeric values should be in the attributes, otherwise weka can not use this algorithm. We should remove or preprocess these other types of dimensions.
+    The Simple Linear Regression techniques is the Linear Regression with one variable. The algorithm in Weka picks the attribute with the lowest squared error. The algorithm can not deal with the missing values, so we need to preprocess before the algorithm and also just the numeric values should be in the attributes, otherwise weka can not use this algorithm. We should remove or preprocess these other types of dimensions. The hypothesis formula is;
 
-     The Linear Regression techniques is for the multiple variable. The algorithm in Weka uses the Akaike criterion. It is a measure of the relative quality of a statistical model, for a given set of data. As such, AIC provides a means for model selection. The algorithm is able to deal with weighted instances.
+$h_\theta (x) = =\theta_0+ \theta_1 x_1$
+
+     The Linear Regression techniques is for the multiple variable. The algorithm in Weka uses the Akaike criterion. It is a measure of the relative quality of a statistical model, for a given set of data. As such, AIC provides a means for model selection. The algorithm is able to deal with weighted instances. The hypothesis formula is for the multi dimensional model;
+
+$h_\theta (x) = \theta^T x =\theta_0 x_0+ \theta_1 x_1 + ... + \theta_n x_n$
 
      The algorithm SMOReg in weka is the support vector machine for regression. The parameters can be learned using various algorithms. The algorithm is selected by setting the RegOptimizer. This implementation globally replaces all missing values and transforms nominal attributes into binary ones. It also normalizes all attributes by default.
 
@@ -114,14 +104,12 @@ $Sub_metering_3 =
 
 So the class attribute depends on these variables above. The Voltage and Global$\_$reactive$\_$power have a negative marks, that means, if we decrease these attributes, we have more Sub$\_$metering$\_$3. And for the positive weight, we need to increase the attribute Global$\_$intensity.
 
-The 3. technique is the SMOReg, the support vector machine for regression. We have so much problem and most of the case we had out of memory error again. So, we havei increased the maxheap to 6gb and we use Percentage split to choose the training testing data split. Because it will run one time with this split instead of 10 times run with the 10 fold cross validation. So we have splitted data to $\%$ 75 for the training set and %25 for the test set. In that technique all of the attributes have used in the linear regression model. The model is;\\
-$weights (not support vectors):
-$\\
+The 3. technique is the SMOReg, the support vector machine for regression. We had problems and most of the case we had out of memory error again. So, we have increased the maxheap to 6gb and used Percentage split to choose the training testing data split. Because it will run one time with this split instead of 10 times run with the 10 fold cross validation. So we have splitted data to $\%$ 75 for the training set and $\%$ 25 for the test set. But still we could not reach any model. The algorithm have taken more than 6 hours.
 
-And the last one is the tree model, M5 Prunning(M5P). We had the same problems like in the SMOReg technique. So we had used Percentage split and have splitted data also to $\%$ 75 for the training set. In that model we have many leaf of the trees, which has a different linear regression model. In the household electric power consumption dataset, the algorithm generate *****  leaf, different linear regression. It is quiet hard to show all of them and also the tree is a bit complicated in that dataset.
+And the last one is the tree model, M5 Prunning(M5P). We have used again 10 folds cross validation technique for the test and training data. In that model we have many leaf of the trees, which has a different linear regression model. In the household electric power consumption dataset, the algorithm generate 3180 leaf, different linear regression. It is quiet hard to show all of them and also the tree is a bit complicated in that dataset.
 
 \subsubsection{The solar flare data set}
-The solar flare file contains 2 datase. We have chosen the smallest dataset, which has around 300 instances. (flare1.csv) This file has the smallest instance in our datasets. First we convert the file into excel file and upload it to weka. In this file, there are no missing values. So we do not need any preprocess method. In that dataset we have also some attributes are in nominativ type. And start the algorithms in the classify section of the weka. There are 3 class variable in that dataset, we calculate the regression model for the class X flares (severe flares) production by this region in the following 24 hours. We have also used the 10 folds Cross-validation techniques to split the data for test and train. 
+The solar flare file contains 2 datase. We have chosen the smallest dataset, which has around 300 instances. (flare1.csv) This file has the smallest instance in our datasets. First we convert the file into excel file and upload it to weka. In this file, there are no missing values. So we do not need anything to do for the missing values. In that dataset we have also some attributes are in nominativ type. And start the algorithms in the classify section of the weka. There are 3 class variable in that dataset, we calculate the regression model for the class X flares (severe flares) production by this region in the following 24 hours. So we remove other 2 class label from the preprocess section. We have also used the 10 folds Cross-validation techniques to split the data for test and train. 
 
 At first we have run the Simple Linear Regression techniques, which is the least powerful algorithm. This technique can just deal with the Numeric attributes. For this reason, we deleted the nominativ dimension from the dataset, which are the first 3 fields. It chooses the attribute Historically-complex, which hast the lowest squared error. Linear regression on Historically-complex model is; 
 
@@ -240,50 +228,85 @@ Mean absolute error $= \frac{|p_1 - a_1| + ... + |p_n - a_n|}{n}$
 
 Root mean squared error $=\sqrt{ \frac{(p_1 - a_1)^2 + ... + (p_n - a_n)^2}{n} }$
 
-In the 1. dataset, which is individual household electric power consumption, we had much problem to build the model, it took too much time with the SMOReg and M5P algorithms. But we had the best correlation coefficient in that dataset, which means two variables are perfectly related in a positive linear sense. But in the other way, we have the highest error rate. The minimum error rate was in the smallest instance dataset. The error rate was almost 0 in that data set Solar Flare dataset, and the process time is less then 1 second.
+When we compare the techniques, we have the biggest correlation coefficient from the model tree technique, m5p, which has many different linear regression model, and the time is also not that bad like SMOReg technique. In the largest dataset it took 5 minutes and for 2 million data, it was also not that much. The error rate is the lowest also in that regression technique. 
 
 \begin{table}
-\begin{tabular}{|l| c | c |c |c |c |}
-\hline & & & & & \\
-Data & Tech. & Time(s) & Correlation & Mean abs.  & Root mean \\
- & & & coefficient & error & squared error  \\
-\hline & & & & &  \\
-1  & 1  & 0.43  & 0.6386  & 5.0592  & 6.493  \\ 
-\hline & & & & & \\
-1  & 2  & 8.64  & 0.6317  & 5.125  &  6.5403 \\ 
-\hline & & & & & \\
-1  & 3  &   &   &  &  \\ 
-\hline & & & & & \\
-1  & 4  &   &   &  &  \\ 
-\hline & & & & & \\
-2  & 1  & 0  & 0.0574  & 0.0425 & 0.146 \\ 
-\hline & & & & & \\
-2  & 2  & 0.02  &  0.1028 & 0.0471 & 0.1469  \\ 
-\hline & & & & & \\
-2  & 3  & 0.88  & -0.0092 & 0.0223 & 0.1472 \\ 
-\hline & & & & & \\
-2  & 4  & 0.11  & 0.0625  & 0.046   & 0.1497 \\ 
-\hline & & & & & \\
-3  & 1  & 0.26   & 0.4345  & 0.628   &  0.7976\\ 
-\hline & & & & & \\
-3  & 2  & 0.08  & 0.5257  & 0.5854 & 0.7534  \\ 
-\hline & & & & & \\
-3  & 3  & 94.03  &  0.5225  & 0.5841 & 0.7564 \\ 
-\hline & & & & & \\
-3  & 4  & 1.08  & 0.5866  & 0.5525  & 0.7188 \\ 
+\begin{tabular}{| c | c | c |c |c |}
+\hline & & & & \\
+Technique & Time(s) & Correlation & Mean abs.  & Root mean \\
+ & & coefficient & error & squared error  \\
+\hline & & & &  \\
+1  & 0.43  & 0.6386  & 5.0592  & 6.493  \\ 
+\hline & & & & \\
+2  & 8.64  & 0.6317  & 5.125  &  6.5403 \\ 
+\hline & & & & \\
+3  & $\ge$ 21600  & - & - & - \\ 
+\hline & & & & \\
+4  &  304.59 &  0.8506 & 2.3794 & 4.4367 \\ 
 \hline
 \end{tabular}
-\caption{\textbf{Results of the Regression Techniques}
-    Dataset 1: "Individual Household Electric Power Consumption Data Set" 
-    Dataset 2: "Solar Flare Data Set"
-    Dataset 3: "Wine Quality Data Set"}
-    Algorithm 1: Simple Linear Regression
-    Algorithm 2: Linear Regression
-    Algorithm 3: SMOReg
+\caption{\textbf{Results of the Regression Techniques for the largest dataset, "Individual Household Electric Power Consumption Data Set" }}
+    Algorithm 1: Simple Linear Regression,
+    Algorithm 2: Linear Regression,
+    Algorithm 3: SMOReg,
     Algorithm 4: M5P
 \end{table}
 
+The worst regression technique is the simplest one Simple Linear Regression, it uses just one attribute and has really bad results. It runs really fast, but we did not achieve a good result with it.
+
+\begin{table}
+\begin{tabular}{| c | c | c |c |c |c |}
+\hline & & & & \\
+Technique & Time(s) & Correlation & Mean abs.  & Root mean \\
+ & & coefficient & error & squared error  \\
+\hline & & & &  \\
+1  & 0  & 0.0574  & 0.0425 & 0.146 \\ 
+\hline & & & & \\
+2  & 0.02  &  0.1028 & 0.0471 & 0.1469  \\ 
+\hline & & & & \\
+3  & 0.88  & -0.0092 & 0.0223 & 0.1472 \\ 
+\hline & & & & \\
+4  & 0.11  & 0.0625  & 0.046   & 0.1497 \\ 
+\hline
+\end{tabular}
+\caption{\textbf{Results of the Regression Techniques for the smallest dataset,  "Solar Flare Data Set"}}
+    Algorithm 1: Simple Linear Regression,
+    Algorithm 2: Linear Regression,
+    Algorithm 3: SMOReg,
+    Algorithm 4: M5P
+\end{table}
+
+In the second dataset Solar Flare, in the result of the SMOReg, (Table 2) the correlation coefficient is really low, almost 0. It means, here is no linear relationship between the two variables. So that result is really bad, it is the smallest dataset and we can see from the result SMOReg have not good result for dataset with the small instance. And with that technique, we had many problems with the largest dataset. It took too much time to build a model with it, even with the percentage split technique. And finally we have needed to stop the technique. So we have no idea, how this techniques deal with the large data. 
+
+\begin{table}
+\begin{tabular}{| c | c | c |c |c |}
+\hline & & & & \\
+Technique & Time(s) & Correlation & Mean abs.  & Root mean \\
+ & & coefficient & error & squared error  \\
+\hline & & & &  \\
+1  & 0.26   & 0.4345  & 0.628   &  0.7976\\ 
+\hline & & & & \\
+2  & 0.08  & 0.5257  & 0.5854 & 0.7534  \\ 
+\hline & & & & \\
+3  & 94.03  &  0.5225  & 0.5841 & 0.7564 \\ 
+\hline & & & & \\
+4  & 1.08  & 0.5866  & 0.5525  & 0.7188 \\ 
+\hline
+\end{tabular}
+\caption{\textbf{Results of the Regression Techniques for the medium dataset, "Wine Quality Data Set"}}
+    Algorithm 1: Simple Linear Regression,
+    Algorithm 2: Linear Regression,
+    Algorithm 3: SMOReg,
+    Algorithm 4: M5P
+\end{table}
+
+The regular Linear Regression technique has a normal result, it has not bad result, but also not that good. This technique's results are always in the middle and the algorithm is quiet fast, when we compared with the other complicated ones.
+
+In the 1. dataset, which is individual household electric power consumption, we had much problem to build the model, it took too much time with the SMOReg and M5P algorithms. But we had the best correlation coefficient in that dataset, which means two variables are perfectly related in a positive linear sense. But in the other way, we have the highest error rate. The minimum error rate was in the smallest instance dataset. The error rate was almost 0 in that data set Solar Flare dataset, and the process time is less then 1 second.
+
 
 \subsection{Conclusion}
+
+We have presented some of the regression techniques, with the different size of datasets. The regression problem is to predict a numeric value. We have used Weka Explorer tool to compare these techniques and also the files. We had really good results with the largest dataset, although we had also some problems with it, when we were uploading the file into the weka and running the SMOReg algorithm in that dataset. SMOReg technique take much time, although we had not got a quiet nice result with it. The M5P regression technique was the best technique in our dataset. This technique is a tree model, where each leaf has got one of these linear regression model. It is like a patch work of linear models. The technique is also quiet fast and efficient. The regular technique's result is also sufficient. 
 
 \end{document}
