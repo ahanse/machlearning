@@ -1,0 +1,38 @@
+=== Run information ===
+
+Scheme:       weka.classifiers.functions.LinearRegression -S 0 -R 1.0E-8
+Relation:     household_power_consumption org-weka.filters.unsupervised.attribute.Remove-R1-2,7-8-weka.filters.unsupervised.attribute.ReplaceMissingValues
+Instances:    2075259
+Attributes:   5
+              Global_active_power
+              Global_reactive_power
+              Voltage
+              Global_intensity
+              Sub_metering_3
+Test mode:    10-fold cross-validation
+
+=== Classifier model (full training set) ===
+
+
+Linear Regression Model
+
+Sub_metering_3 =
+
+     -6.2151 * Global_reactive_power +
+     -0.0334 * Voltage +
+      1.2213 * Global_intensity +
+      9.627 
+
+Time taken to build model: 8.64 seconds
+
+=== Cross-validation ===
+=== Summary ===
+
+Correlation coefficient                  0.6317
+Mean absolute error                      5.125 
+Root mean squared error                  6.5403
+Relative absolute error                 64.8087 %
+Root relative squared error             77.5183 %
+Total Number of Instances          2049280     
+Ignored Class Unknown Instances              25979     
+

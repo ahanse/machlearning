@@ -95,11 +95,33 @@ categorical value. There are two dataset, one is for the red wine and the other 
      M5 Prunning(M5P)  is a non-linear regression, which implements base routines for generating M5 Model trees and rules. A model tree is a tree, where each leaf has got one of these linear regression model. It is like a patch work of linear models.  
 
 \subsection{Experiments and results for the individual datasets}
+
 \subsubsection{The household electric power consumption data set}
-\subsubsection{The solar flare data set}
-The solar flare file contains 2 datase. We have chosen the smallest dataset, which has around 300 instances. (flare1.csv) This file has the smallest instance in our datasets. First we convert the file into excel file and upload it to weka. In this file, there are no missing values. So we do not need any preprocess method. In that dataset we have also some attributes are in nominativ type. And start the algorithms in the classify section of the weka. There are 3 class variable in that dataset, we calculate the regression model for the class X flares (severe flares) production by this region in the following 24 hours. 
+The household electric power consumption data set has a huge instance, which has almost two million instances. First we convert the file to csv and try to upload it to weka. We had an error out of memory, so we have changed the maxheap value to 4gb. Then our data uploaded to the weka without problem. In this file, there are some missing values. From the preprocess section, there is a function, which is called Replacemissingvalues. This function replaces all missing values for nominal and numeric attributes in dataset with the modes and mean from the training data. In that dataset, there are also 2 nominal attributes and this nominal attributes consist of more than 1400 distinct values. In that reason, it is hard to calculate the linear regression model with them. So we have removed these nominal attributes and deal just with the numeric attributes. After have removed nominal attributes and run the Replacemissingvalues function, we have passed the section to classify of the weka. There are 3 class variable in that dataset, we calculate the regression model for the class energy sub-metering No. 3 corresponds to an electric water-heater and an air-conditioner.
 
 We have used the 10 folds Cross-validation techniques to split the data for test and train. It divides the dataset into 10 part and each 10 samples is retained as the validation data for testing the model, and the remaining 9 samples are used as training data. The cross-validation process is then repeated 10 times, with each of the 10 samples used exactly once as the validation data. The 10 results from the folds then can be averaged to produce a single estimation.  
+
+At first we have run the Simple Linear Regression techniques, which is the least powerful algorithm. It chooses the attribute Global$\_$active$\_$power, which hast the lowest squared error. Linear regression on Global$\_$active$\_$power model is; 
+
+$5.1 * Global\_active\_power + 0.9$\\
+
+After that we have used the Linear Regression techniques for the multiple variables. The technique choose some of the attributes for the regression model. The model is;\\
+$Sub_metering_3 =
+     -6.2151 * Global\_reactive\_power +
+     -0.0334 * Voltage +
+      1.2213 * Global\_intensity +
+      9.627 $\\
+
+So the class attribute depends on these variables above. The Voltage and Global$\_$reactive$\_$power have a negative marks, that means, if we decrease these attributes, we have more Sub$\_$metering$\_$3. And for the positive weight, we need to increase the attribute Global$\_$intensity.
+
+The 3. technique is the SMOReg, the support vector machine for regression. We have so much problem and most of the case we had out of memory error again. So, we havei increased the maxheap to 6gb and we use Percentage split to choose the training testing data split. Because it will run one time with this split instead of 10 times run with the 10 fold cross validation. So we have splitted data to $\%$ 75 for the training set and %25 for the test set. In that technique all of the attributes have used in the linear regression model. The model is;\\
+$weights (not support vectors):
+$\\
+
+And the last one is the tree model, M5 Prunning(M5P). We had the same problems like in the SMOReg technique. So we had used Percentage split and have splitted data also to $\%$ 75 for the training set. In that model we have many leaf of the trees, which has a different linear regression model. In the household electric power consumption dataset, the algorithm generate *****  leaf, different linear regression. It is quiet hard to show all of them and also the tree is a bit complicated in that dataset.
+
+\subsubsection{The solar flare data set}
+The solar flare file contains 2 datase. We have chosen the smallest dataset, which has around 300 instances. (flare1.csv) This file has the smallest instance in our datasets. First we convert the file into excel file and upload it to weka. In this file, there are no missing values. So we do not need any preprocess method. In that dataset we have also some attributes are in nominativ type. And start the algorithms in the classify section of the weka. There are 3 class variable in that dataset, we calculate the regression model for the class X flares (severe flares) production by this region in the following 24 hours. We have also used the 10 folds Cross-validation techniques to split the data for test and train. 
 
 At first we have run the Simple Linear Regression techniques, which is the least powerful algorithm. This technique can just deal with the Numeric attributes. For this reason, we deleted the nominativ dimension from the dataset, which are the first 3 fields. It chooses the attribute Historically-complex, which hast the lowest squared error. Linear regression on Historically-complex model is; 
 
@@ -112,7 +134,7 @@ $   X-class flares =   0.0334 * Code for class=H,D +
       0.0271 * Historically-complex +
      -0.038 $\\
 
-So the quality depends on these variables. We can see above that two nominativ attribute called "Code for class" and "Code for spot distribution" are in our linear regression model.
+So the X-class flares depends on these variables. We can see above that two nominativ attribute called "Code for class" and "Code for spot distribution" are in our linear regression model.
 
 The 3. technique is the SMOReg, the support vector machine for regression. In that technique all of the attributes have used in the model. We can see from the below that for the nominativ attribute all possible values are also in the model. Some of them has a negative marks, which can increase the class value, when we decrease these attributes. And for the positive weight, we need to increase.The model is;\\
 $weights (not support vectors):
@@ -208,16 +230,27 @@ And the last one is the tree model, M5 Prunning(M5P). In that model we have many
 
 \subsubsection{Comparison}
 
+In that part, we wil describe and compare the error rate, coefficient corelation between the algorithms and also datasets each others. 
+
+The correlation coefficient is a measure of linear association between two variables. Values of the correlation coefficient are always between -1 and +1. A correlation coefficient of +1 indicates that two variables are perfectly related in a positive linear sense, a correlation coefficient of -1 indicates that two variables are perfectly related in a negative linear sense, and a correlation coefficient of 0 indicates that there is no linear relationship between the two variable. For simple linear regression, the sample correlation coefficient is the square root of the coefficient of determination, with the sign of the correlation coefficient being the same as the sign of b1, the coefficient of x1 in the estimated regression equation.
+
+The interpretation of these error in the table below are;
+
+Mean absolute error $= \frac{|p_1 - a_1| + ... + |p_n - a_n|}{n}$
+
+Root mean squared error $=\sqrt{ \frac{(p_1 - a_1)^2 + ... + (p_n - a_n)^2}{n} }$
+
+In the 1. dataset, which is individual household electric power consumption, we had much problem to build the model, it took too much time with the SMOReg and M5P algorithms. But we had the best correlation coefficient in that dataset, which means two variables are perfectly related in a positive linear sense. But in the other way, we have the highest error rate. The minimum error rate was in the smallest instance dataset. The error rate was almost 0 in that data set Solar Flare dataset, and the process time is less then 1 second.
+
 \begin{table}
 \begin{tabular}{|l| c | c |c |c |c |}
-
 \hline & & & & & \\
 Data & Tech. & Time(s) & Correlation & Mean abs.  & Root mean \\
  & & & coefficient & error & squared error  \\
 \hline & & & & &  \\
-1  & 1  &   &   &  &  \\ 
+1  & 1  & 0.43  & 0.6386  & 5.0592  & 6.493  \\ 
 \hline & & & & & \\
-1  & 2  &   &   &  &  \\ 
+1  & 2  & 8.64  & 0.6317  & 5.125  &  6.5403 \\ 
 \hline & & & & & \\
 1  & 3  &   &   &  &  \\ 
 \hline & & & & & \\
@@ -241,13 +274,13 @@ Data & Tech. & Time(s) & Correlation & Mean abs.  & Root mean \\
 \hline
 \end{tabular}
 \caption{\textbf{Results of the Regression Techniques}
+    Dataset 1: "Individual Household Electric Power Consumption Data Set" 
+    Dataset 2: "Solar Flare Data Set"
+    Dataset 3: "Wine Quality Data Set"}
     Algorithm 1: Simple Linear Regression
     Algorithm 2: Linear Regression
     Algorithm 3: SMOReg
     Algorithm 4: M5P
-    Dataset 1: "Individual Household Electric Power Consumption Data Set" 
-    Dataset 2: "Solar Flare Data Set"
-    Dataset 3: "Wine Quality Data Set"}
 \end{table}
 
 
