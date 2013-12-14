@@ -43,25 +43,14 @@ We have used 5 different classifier algorithm by the tool \emph{Weka}.
 These techniques were;
 \begin{enumerate}
     \item Naive Bayes
-    \item Decision Tree
+    \item Decision Tree (J48)
     \item Random Forest
-    \item Nearest Neighbor
-    \item Support Vector Machine
+    \item Nearest Neighbor (IBk)
+    \item Support Vector Machine (SMO)
 \end{enumerate}
 
-\section{Overview of the data sets}
-\subsection{Census-Income data set}
-The census income data set contains almost three hundred instances in two files
-and is the largest dataset among those three sets. The dataset has forthy
-dimensions, whereby some of the fields contain nominal data. There are two
-seperate files, one is for testing (1/3 of the data) and one is for training (2/3
-of the data). We have unified these two files in one. The data set contain
-missing values. We decided to use this dataset to test the performance of the
-methods. This dataset contains 1 class labels, yearly income. The income have
-been binned at the 50000\$ level to present binary classification. The goal field
-of this data, however, was drawn from the "total person income" field rather
-than the "adjusted gross income" and may, therefore, behave differently than the
-orginal ADULT goal field.
+\section{The Datasets}
+The census income data set contains almost three hundred thousands instances in two files and is the largest dataset among those three sets. The dataset has forthy dimensions, whereby some of the fields contain nominal data. There are two seperate files, one is for testing (1/3 of the data) and one is for training(2/3 of the data) . We have unified these two files in one. The data set contain missing values. We decided to use this dataset to test the performance of the methods. This dataset contains 1 class labels, yearly income. The income have been binned at the 50000 level to present binary classification. The goal field of this data, however, was drawn from the "total person income" field rather than the "adjusted gross income" and may, therefore, behave differently than the orginal ADULT goal field.
 
 \subsection{Connect-4 data set}
 The connect-4 data set is the large dataset, has more than 67000 instances.
@@ -84,25 +73,66 @@ alive or not. The survival and still-alive variables, when taken together,
 indicate whether a patient survived for at least one year following the heart
 attack (the last attribute). 
 
-\section{Methods tried}
+\section{Classification Algorithms}
 
+    \subsection{ Naive Bayes}
+    \subsection{ Decision Tree (J48)}
+    \subsection{ Random Forest}
+    \subsection{ Nearest Neighbor (IBk)}
+    \subsection{ Support Vector Machine (SMO)}
 
-\section{Experiments and results for the individual datasets}
+\section{Experiments and Results for the Individual Datasets}
 
 \subsection{Census-Income (KDD) data set}
+
+The census income data set has a huge instance, which has almost three hundred thousands  instances. First we convert the file to csv and try to upload it to \emph{Weka}. At first weka didnt notice the missing values and add a new attribute value with "?". Then we have deleted the space before question mark and the problem is solved. The maxheap value was 4gb, so we had not any problem to upload instance file to weka. 
+
+The class variable yearly income has two possible value, that are more and less than 50k \$. More than 50k \$ is 280717 records and the less than 50k \$ is 18568. 
+
+Some of the attributes have half percent of missing values, we need to deal with these missing values in preprocess segment. There is a function, which is called Replacemissingvalues in Weka. This function replaces all missing values for nominal and numeric attributes in dataset with the modes and mean from the training data. In that dataset, there are also many nominal attributes.. After run the Replacemissingvalues function, we have passed the section to classify of the \emph{Weka}. 
+
+After we have finished preprocess steps, we have run the 5 classification algorithm and have used the 10 folds Cross-validation techniques to split the data for test and train. 
+
+At first we have started with the Naive Bayes techniques,
+
+
+
+
+
+
+
+
+
+
 
 \subsection{Connect-4 data set}
 
 Connect-4 is a two player game and normally the players choose a color disk, but in our dataset, first player uses 'x' which is called player x and second player, i.e. player o uses 'o'. Then the players start to drop their pieces into a seven column and six row vertically suspended grid. The disks fall straight down, occupying the next available space within column. The goal of the game is to connect four of one's own discs of the same letter next to each other vertically, horizontally, or diagonally before your opponent. ($http://en.wikipedia.org/wiki/Connect_Four$) 
 
+The class variable can be win or loss or draw. The distribution of it is; 44473 records win, i.e. 65.83 $\%$, 16635 records loss,  i.e. 24.62 $\%$ and 6449 records draw,  i.e. 9.55 $\%$.
+
 The game has played 8 turns and none of the player has won yet. The attributes are all of the square in the seven column and six row board, which can be $\{$x, o, b$\}$ i.e. x is for the player x, o is for player o and b for blank. So, the dataset includes 42 attributes for the board grid. The data set has not got any missing values. Every instances has 4 times x, 4 times o values and the rest are b. 
 
-We have chosen this data set due to test preprocess for 1-N coding. The function for one code encoding in weka is NominalToBinary. And after we have run that function all of these columns changed to the columnname=x, columnname=o, columnname=b, one of it will be 1 and the others will be 0, depends on a value of the columnname. After the preprocess there are 127 attributes with the class label. 
+We have chosen this data set due to test preprocess for 1-N coding. The function for one code encoding in weka is NominalToBinary. And after we have run that function all of these columns changed to the column$\_$name=x, column$\_$name=o, column$\_$name=b, one of it will be 1 and the others will be 0, depends on a value of the column$\_$name. After the preprocess there are 127 attributes with the class label. 
 
-The class variable can be win or loss or draw. The distribution of it is; 44473 records win, i.e. 65.83 $\%$, 16635 records loss,  i.e. 24.62 $\%$ and 6449 records draw,  i.e. 9.55 $\%$.
+After we have finished preprocess steps, we have run the 5 classification algorithm and have used also the 10 folds Cross-validation techniques to split the data for test and train. 
+
+At first we have run the Naive Bayes techniques,
 
 
 \subsection{Echocardiogram data set}
+
+The Echocardiogram data set is the smallest dataset, which has around 132 instances. First we convert the file into excel file and upload it to \emph{Weka}. In this file, there are missing values, the same number of the instances. So we do need also to run Replacemissingvalues in \emph{Weka} preprocess tab. The most of the missing values are in the last column, which can also be the class attribute. The 58 of the values are missing and it is almost half of the instances. In that reason, we have chosen the still alive column as a class attribute instead of alive at 1, that indicate whether a patient survived for at least one year following the heart attack. 
+
+After we have finished preprocess steps, we have run the 5 classification algorithm and have used also the 10 folds Cross-validation techniques to split the data for test and train. 
+
+At first we have started with the Naive Bayes techniques,
+
+
+
+
+
+
 
 \subsection{Comparison}
 
