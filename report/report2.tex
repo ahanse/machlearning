@@ -53,6 +53,7 @@ These techniques were;
 \end{enumerate}
 
 \section{The Datasets}
+\subsection{Census-Income (KDD)  data set}
 The census income data set contains almost three hundred thousands instances in
 two files and is the largest dataset among those three sets. The dataset has
 forthy dimensions, whereby some of the fields contain nominal data. There are
@@ -108,65 +109,25 @@ attack (the last attribute).
 
 \subsection{Connect-4 data set}
 
-We have started with the Connect-4 dataset, because the instance number is in
-the middle and it is suitable to find the best parameter sets of the algorithms
-to use them for the next datasets.
+We have started with the Connect-4 dataset, because the instance number is in the middle and it is suitable to find the best parameter sets of the algorithms to use them for the next datasets.
 
-Connect-4 is a two player game and normally the players choose a color disk,
-but in our dataset, first player uses 'x' which is called player x and second
-player, i.e. player o uses 'o'. Then the players start to drop their pieces
-into a seven column and six row vertically suspended grid. The disks fall
-straight down, occupying the next available space within column. The goal of
-the game is to connect four of one's own discs of the same letter next to each
-other vertically, horizontally, or diagonally before your opponent.
-($http://en.wikipedia.org/wiki/Connect_Four$) 
+Connect-4 is a two player game and normally the players choose a color disk, but in our dataset, first player uses 'x' which is called player x and second player, i.e. player o uses 'o'. Then the players start to drop their pieces into a seven column and six row vertically suspended grid. The disks fall straight down, occupying the next available space within column. The goal of the game is to connect four of one's own discs of the same letter next to each other vertically, horizontally, or diagonally before your opponent. ($http://en.wikipedia.org/wiki/Connect_Four$) 
 
-The class variable can be win or loss or draw. The distribution of it is; 44473
-records win, i.e. 65.83 $\%$, 16635 records loss,  i.e. 24.62 $\%$ and 6449
-records draw,  i.e. 9.55 $\%$.
+The class variable can be win or loss or draw. The distribution of it is; 44473 records win, i.e. 65.83 $\%$, 16635 records loss,  i.e. 24.62 $\%$ and 6449 records draw,  i.e. 9.55 $\%$.
 
-The game has played 8 turns and none of the player has won yet. The attributes
-are all of the square in the seven column and six row board, which can be
-$\{$x, o, b$\}$ i.e. x is for the player x, o is for player o and b for blank.
-So, the dataset includes 42 attributes for the board grid. The data set has not
-got any missing values. Every instances has 4 times x, 4 times o values and the
-rest are b. 
+The game has played 8 turns and none of the player has won yet. The attributes are all of the square in the seven column and six row board, which can be $\{$x, o, b$\}$ i.e. x is for the player x, o is for player o and b for blank. So, the dataset includes 42 attributes for the board grid. The data set has not got any missing values. Every instances has 4 times x, 4 times o values and the rest are b. 
 
-We have chosen this data set due to test preprocess for 1-N coding. The
-function for one code encoding in weka is NominalToBinary. And after we have
-run that function all of these columns changed to the column$\_$name=x,
-column$\_$name=o, column$\_$name=b, one of it will be 1 and the others will be
-0, depends on a value of the column$\_$name. After the preprocess there are 127
-attributes with the class label. 
+We have chosen this data set due to test preprocess for 1-N coding. The function for one code encoding in weka is NominalToBinary. And after we have run that function all of these columns changed to the column$\_$name=x, column$\_$name=o, column$\_$name=b, one of it will be 1 and the others will be 0, depends on a value of the column$\_$name. After the preprocess there are 127 attributes with the class label. We also compared the results without the preprocess part, for all algorithms.
 
-After we have finished preprocess steps, we have run one by one NaiveBayes,
-Decision Tree (J48), Random Forest, Nearest Neighbor (IBk), Support Vector
-Machine (SMO) Classification algorithm, which are sufficiently different. The
-most important value in the results of the classification algorithms are the
-correctly and incorrectly classified instance percentage. How more the
-correctly instance is, the classification algorithm has more performance. These
-percentages are calculated from the confusion matrix. Add all the correct
-values of that matrix and add all the incorrect values of that matrix will give
-the percentage of that values. 
+After we have finished preprocess steps, we have run one by one NaiveBayes, Decision Tree (J48), Random Forest, Nearest Neighbor (IBk), Support Vector Machine (SMO) Classification algorithm, which are sufficiently different. The most important value in the results of the classification algorithms are the correctly and incorrectly classified instance percentage. How more the correctly instance is, the classification algorithm has more performance. These percentages are calculated from the confusion matrix. Add all the correct values of that matrix and add all the incorrect values of that matrix will give the percentage of that values. 
 
-At first we have started with the Naive Bayes techniques. In that
-classification the algorithm has 4 parameters, which are debug,
-useSupervisedDiscretization, useKernelEstimator, displayModelInOldFormat.
-useKernelEstimator and useSupervisedDiscretization parameters are for numeric
-attributes, so that we dont need to use them. if the debug parameter is true,
-classifier may output additional info to the console. In
-displayModelInOldFormat parameter we have one class and many attributes, so
-that the new format is better to use in our dataset. In consequence, we set all
-the parameters false like in the default version and use the algorithm in
-10-fold cross validation. We run the algorithm two times to see the effect of
-the preprocess strategy, which is one code encoding. The result of the Naive
-Bayes is below in Table 1.
+At first we have started with the Naive Bayes techniques. In that classification the algorithm has 4 parameters, which are debug, useSupervisedDiscretization, useKernelEstimator, displayModelInOldFormat. useKernelEstimator and useSupervisedDiscretization parameters are for numeric attributes, so that we dont need to use them. if the debug parameter is true, classifier may output additional info to the console. In displayModelInOldFormat parameter we have one class and many attributes, so that the new format is better to use in our dataset. In consequence, we set all the parameters false like in the default version and use the algorithm in 10-fold cross validation. We run the algorithm two times to see the effect of the preprocess strategy, which is one code encoding. The result of the Naive Bayes is below in Table 1.
 
 \begin{table}
 \begin{tabular}{|l| c | c | c |c |c |}
 
 \hline & & & & & \\
-Pre- & Cor. Classified . & Tra. & Val. & Mean abs.  & Root mean \\
+Pre- & Cor. Classified . & Tra. & Val. & Mean Abs.  & Root mean \\
 Process & Instance & T(s) &  T(s) & Error & Squared Error \\
 \hline & & & & & \\
 - &72.14  $\%$ & 0.08 & 3 &  0.2672 & 0.3587 \\ 
@@ -175,34 +136,16 @@ Process & Instance & T(s) &  T(s) & Error & Squared Error \\
 \hline
 \end{tabular}
 \caption{Results of the Naive Bayes Classification Algorithms}
+	1-N c. : 1-N coding,
+	Cor. C. Instance:  Correctly Classified Instances,
+	Tra. T : Training Time,
+	Val T: Validation Time,
+	Mean Abs. Error. : Mean absolute error 
 \end{table}
 
-Secondly, i will explain the J48 classification i.e. one of the decision tree
-algorithm. In that classification the algorithm has several parameters. I will
-pass the parameters that i explained above. minNumObj parameter set the minimum
-number of instances per leaf.(Default: 2) confidenceFactor sets confidence
-threshold pruning, the default value is 0.25 and the smaller values incur more
-pruning. binarySplits has been used on nominal attributes when building the
-trees. seed parameter used for randomizing the data when reduced error pruning.
-numFolds parameter determines the amount of data used for reduced error
-pruning.  One fold of numFolds is used for pruning, the rest for growing the
-tree. (Default: 3) unpruned parameter is to prunning performed or not.
-saveInstanceData is to save the training data for visualization. subtreeRaising
-don't perform subtree raising. collapseTree is for parts are removed that do
-not reduce training error. useMDLcorrection is for finding splits on numeric
-attributes. useLaplace counts at leaves are smoothed based on Laplace.
-reducedErrorPruning reduced-error pruning is used instead of C.4.5 pruning. 
+Secondly, i will explain the J48 classification i.e. one of the decision tree algorithm. In that classification the algorithm has several parameters. I will pass the parameters that i explained above. minNumObj parameter set the minimum number of instances per leaf.(Default: 2) confidenceFactor sets confidence threshold pruning, the default value is 0.25 and the smaller values incur more pruning. binarySplits has been used on nominal attributes when building the trees. seed parameter used for randomizing the data when reduced error pruning. numFolds parameter determines the amount of data used for reduced error pruning.  One fold of numFolds is used for pruning, the rest for growing the tree. (Default: 3) unpruned parameter is to prunning performed or not. saveInstanceData is to save the training data for visualization. subtreeRaising don't perform subtree raising. collapseTree is for parts are removed that do not reduce training error. useMDLcorrection is for finding splits on numeric attributes. useLaplace counts at leaves are smoothed based on Laplace. reducedErrorPruning reduced-error pruning is used instead of C.4.5 pruning. 
 
-I have changed some of the parameters of J48. When i increase the
-confidenceFactor, i achieved more leaves and the size of tree extends and it
-took more seconds, but had better correctly classified instances. After that i
-increase the number of instances per leaf with the parameter minNumObj, but the
-result was worser than the default value. i set subtreeRaising parameter false,
-the result was also not good and i change these to the default values. All of
-the result of J48 classification is in Table 1. Finally i have had the best
-result of the J48 algorithm with these instances J48 -C 0.5 -M 2, there is just
-one difference from the default values, i.e confidenceFactor = 0.5 instead of
-0.25. (Table 2) 
+I have changed some of the parameters of J48. When i increase the confidenceFactor, i achieved more leaves and the size of tree extends and it took more seconds, but had better correctly classified instances. After that i increase the number of instances per leaf with the parameter minNumObj, but the result was worser than the default value. i set subtreeRaising parameter false, the result was also not good and i change these to the default values. All of the result of J48 classification is in Table 1. Finally i have had the best result of the J48 algorithm with these instances J48 -C 0.5 -M 2, there is just one difference from the default values, i.e confidenceFactor = 0.5 instead of 0.25. (Table 2) 
 
 \begin{table}
 \begin{tabular}{|l| c | c | c | c |c |c |}
@@ -225,25 +168,15 @@ J48 -S -C 0.5 -M 2 	& -&			 80.83 $\%$ & 5.36 &  73 & 7079 & 10618\\
 \hline
 \end{tabular}
 \caption{Results of the J48 Classification Algorithms with different Parameters}
+	1-N c. : 1-N coding,
+	Cor. C. Instance:  Correctly Classified Instances,
+	Tra. T : Training Time,
+	Val T: Validation Time,
 \end{table}
 
-The third algorithm is the Randomforest algorithm. The technique has several
-parameters. I will pass again the parameters that i explained above. printTrees
-parameter is to print the individual trees in the output. So, we do not need to
-show it and left it in the false for this dataset. Because there will be many
-leaf and the trees are quiet huge to show here. maxDepth is the maximum depth
-of the trees. We have chosen the default value 0. unlimited.numExecutionSlots
-is the number of execution slots to use for constructing the ensemble. The
-randomforest algorithm, which builds a series of trees, so the parameter
-numTrees is to how many trees to be generated. The default value is 10, we have
-changed it to see the effect of the tree numbers. numFeatures is the number of
-attributes to be used in random selection. 
+The third algorithm is the Randomforest algorithm. The technique has several parameters. I will pass again the parameters that i explained above. printTrees parameter is to print the individual trees in the output. So, we do not need to show it and left it in the false for this dataset. Because there will be many leaf and the trees are quiet huge to show here. maxDepth is the maximum depth of the trees. We have chosen the default value 0. unlimited.numExecutionSlots is the number of execution slots to use for constructing the ensemble. The randomforest algorithm, which builds a series of trees, so the parameter numTrees is to how many trees to be generated. The default value is 10, we have changed it to see the effect of the tree numbers. numFeatures is the number of attributes to be used in random selection. 
 
-After we have run the RandomForest algorithm, for the different number of trees
-in the forest. If we increase the number of trees, the algorithms runtime would
-be slower, but also the results will be better. So the result is improved for
-more tree values. The results of the  Randomforest  strategy for the different
-number of trees are in the Table 3.
+After we have run the RandomForest algorithm, for the different number of trees in the forest. If we increase the number of trees, the algorithms runtime would be slower, but also the results will be better. So the result is improved for more tree values. The results of the  Randomforest  strategy for the different number of trees are in the Table 3.
 
 
 \begin{table}
@@ -255,7 +188,7 @@ Trees & Process & Instance & T(s) &  T(s) & Error  \\
 \hline & & & & & \\
 10	 & - &			79.93  $\%$ & 12.39 & 168 & 0.2425  \\ 
 \hline & & & & & \\
-10 	 & 1-N c. &	79.93  $\%$ & 12.39 & 168 & 0.2425  \\ 
+10 	 & 1-N c. &	79.63 $\%$ & 24.73 & 300 & 0.2447  \\ 
 \hline & & & & & \\
 5 	& - &			77.69 $\%$ & 7.51 & 81 & 0.2796   \\ 
 \hline & & & & &  \\
@@ -263,15 +196,13 @@ Trees & Process & Instance & T(s) &  T(s) & Error  \\
 \hline
 \end{tabular}
 \caption{Results of the RandomForest Classification Algorithms with different Parameters}
+	1-N c. : 1-N coding,
+	Cor. C. Instance:  Correctly Classified Instances,
+	Tra. T : Training Time,
+	Val T: Validation Time,
 \end{table}
 
-The fourth strategy is the  Nearest Neighbor algorithm, in Weka IBk. The
-technique has also several parameters. We have tested these algorithm for the
-KNN parameter ,which is most important parameter in that algorithm. The default
-value of it is 1. The nearestNeighbourSearchAlgorithm parameter is the nearest
-neighbour search algorithm to use. The distance metric can be simple Euclidean
-distance, which is also the default value. The results of the  Nearest Neighbor
-strategy for different k parameter is in the Table 4.
+The fourth strategy is the  Nearest Neighbor algorithm, in Weka IBk. The technique has also several parameters. We have tested these algorithm for the KNN parameter ,which is most important parameter in that algorithm. The default value of it is 1. The nearestNeighbourSearchAlgorithm parameter is the nearest neighbour search algorithm to use. The distance metric can be simple Euclidean distance, which is also the default value. The results of the  Nearest Neighbor  strategy for different k parameter is in the Table 4.
 
 \begin{table}
 \begin{tabular}{|l| c | c | c | c |c |c |}
@@ -282,7 +213,7 @@ Parameter& Process & Instance & T(s) &  T(s) & Error & Sq. Error \\
 \hline & & & & & & \\
 1 	 & - &			80.9213		   $\%$ &	0.04		& 	3090	 & 	0.2243	 & 0.307  \\ 
 \hline & & & & & & \\	
-1 	 & 1-N c.  &				   $\%$ &			& 		 & 		 &  \\ 
+1 	 & 1-N c.  &		 80.9213		   $\%$ &	0.04		& 	7615	 & 	 0.2243	 &  0.307  \\ 
 \hline & & & & & & \\
 5	 & - &		  			 $\%$ &			& 		 & 		 &  \\ 
 \hline & & & & & & \\	
@@ -290,42 +221,38 @@ Parameter& Process & Instance & T(s) &  T(s) & Error & Sq. Error \\
 \hline
 \end{tabular}
 \caption{Results of the IBk Classification Algorithms with different Parameters}
+	 1-N c.: 1-N coding,
+	Cor. C. Instance:  Correctly Classified Instances,
+	Tra. T : Training Time,
+	Val T: Validation Time,
+	Mean Abs. Error. : Mean absolute error 
 \end{table}
 
-The last classification technique that we have used is the Support Vector
-Machine, in Weka we have used SMO algorithm. The first -C is complexity
-parameter, which SMO support vector machine uses to build the hyperplane
-between any two target classes. A support vector machine constructs a
-hyperplane or set of hyperplanes in a high or infinite dimensional space.
-Intuitively, a good separation is achieved by the
-hyperplane that has the largest distance to the nearest training data points of
-any class, since in general the larger the margin the lower the generalization
-error of the classifier. So -C controls how soft the class margins are, in
-practice how many instances are used as 'support vectors' to draw the linear
-separation boundary in the transformed euclidean feature space. Gamma parameter
-is also critical for performance but obsolete in the linear kernel. (Default :
-PolyKernel -E 1.0) . The results of the  SVM  strategy for different k
-parameter is in the Table 5.
+The last classification technique that we have used is the Support Vector Machine, in Weka we have used SMO algorithm. The first -C is complexity parameter, which SMO support vector machine uses to build the hyperplane between any two target classes. A support vector machine constructs a hyperplane or set of hyperplanes in a high or infinite dimensional space. Intuitively, a good separation is achieved by the hyperplane that has the largest distance to the nearest training data points of any class, since in general the larger the margin the lower the generalization error of the classifier. So -C controls how soft the class margins are, in practice how many instances are used as support vectors to draw the linear separation boundary in the transformed euclidean feature space. Gamma parameter is also critical for performance but obsolete in the linear kernel. (Default : PolyKernel -E 1.0) . We could not run the support vector machine algorithm for different parameters, because the run time too much time for even the default version. It founds the model in 10 hours and we have run more 2 hours and it stucked with the 1. fold. So then we stopped it. We have also did not  compare the difference between with and without preprocess steps, due to the long training and validation time. The result of the algorithm is in the Table 5.
 
 \begin{table}
 \begin{tabular}{|l| c | c | c | c |c |c |}
 
 \hline & & & & & & \\
 Complexity & Pre- &  Cor. C. & Tra. & Val. & Mean abs.  & Root mean \\
-Parameter & Process & Instance & T(s) &  T(s) & Error & Sq, Error \\
+Parameter & Process & Instance & T(s) &  T(s) & Error & Squared E. \\
 \hline & & & & & & \\
-1.0 & - &		   $\%$ &			& 		 & 		 &  \\ 
-\hline & & & & & & \\
-1.0  & 1-N c. &	   $\%$ &			& 		 & 		  &  \\ 
-\hline & & & & & & \\
-0.1	& - &			  $\%$ & 		& 		 & 		  &   \\ 
-\hline & & & & & & \\
-10	 & - &			   $\%$ &   		& 		 &  		 & \\ 
+1.0 & - &		  - &		36913.38	& 	-	 & 	-	 &  - \\ 
 \hline
 \end{tabular}
+
 \caption{Results of the Support Vector Machine Classification Algorithms with different Parameters}
+	 1-N c. : 1-N coding,
+	Cor. C. Instance:  Correctly Classified Instances,
+	Tra. T : Training Time,
+	Val T: Validation Time,
+	Mean Abs. Error. : Mean absolute error 
 \end{table}
 
+After we have run the 5 classification algorithms in connect-4 dataset, we can compare the effect of the preprocess segment, which we have used the 1-n coding to change all nominal attributes to the binary. The results have shown us that we had much better solution without 1-n coding preprocess, even the algorithms take more time with the preprocess, due to the increment of the attributes. The difference is too much and more noticable in the naive bayes algorithm. The other classification techniques, the preprocess did not effect much the performance, even with the nearest neighborhood classification we had the same performance, but the validation time is a lot higher. As a result, we have achieved that the one code encoding algorithm is not suitable for this dataset. 
+
+
+The Naivebayes classification algorithm is a really fast strategy, but on the other hand it is the weakest one from the other 3 techniques (except support vector machine, because we could not find the result of it). We have run the Support Vector Machine and it took almost 10 hours to generate the model and the cross validation part also took too much time and we had to terminate it. The other three classification techniques has an almost similar correctly classified instances. The J48, decision tree algorithm have reached the highest performance with the parameter confidenceFactor=0.5 and the correctly classified instances was 80.98 $\%$. The training time (2.63s) and validation time(79s) are also not that high. The other strategy, randomforest has the best performance between the classification techniques with the highest number of tree parameter, that we have tried. (82.19 $\%$) The time values can be also acceptable. (Training Time: 65s, Validation Time: 753s). The last technique that we have reached the results is IBk, the nearest neighbor algorithm. This algorithm has a little less performance than the other and also the longest validation time(3090s)  except support vector machine, althought the training time is not so high (0.04s).
 
 \subsection{Census-Income (KDD) data set}
 
@@ -346,7 +273,44 @@ called Replacemissingvalues in Weka. This function replaces all missing values
 for nominal and numeric attributes in dataset with the modes and mean from the
 training data. In that dataset, there are also many nominal attributes.. After
 run the Replacemissingvalues function, we have passed the section to classify
-of the \emph{Weka}. 
+of the \emph{Weka}.  We also compared the results without running the Replacemissingvalues, for all algorithms.
+
+\begin{table}
+\begin{tabular}{|l| c | c | c | c |c |c |}
+
+\hline & & & & & & \\
+Algorithms & Pre- & Cor. C.& Tra. & Val. & Mean & Root Mean \\
+ & process  & Instance & T(s) &  T(s) &  Abs. E. & Squared E. \\
+\hline & & & & & & \\
+Naive Bayes		& - &			80.97  $\%$ & 6.66 & 85 & 4297  & 6445 \\ 
+\hline & & & & & & \\
+Naive Bayes	 	& RMV &	80.06 $\%$ & 254.09 & 2755 & 3495  & 6989  \\ 
+\hline & & & & & & \\
+J48	 		& - &			80.15  $\%$ & 6.62 & 79 &  2217 & 3325\\ 
+\hline 	& & & & & & \\
+J48  			& RMV &			80.98 $\%$ & 2.63 & 79 &  6543 & 9814 \\ 
+\hline & & & & & & \\
+RandomForest  	 & - &			80.49 $\%$ & 2.52 & 85 &  3403 & 5104 \\ 
+\hline & & & & & & \\
+RandomForest 	& RMV &			 80.83 $\%$ & 5.36 &  73 & 7079 & 10618\\ 
+\hline & & & & & & \\
+IBk  			 & - &			80.49 $\%$ & 2.52 & 85 &  3403 & 5104 \\ 
+\hline & & & & & & \\
+IBk 			& RMV &			 80.83 $\%$ & 5.36 &  73 & 7079 & 10618\\ 
+\hline & & & & & & \\
+SMO		  	 & - &			80.49 $\%$ & 2.52 & 85 &  3403 & 5104 \\ 
+\hline & & & & & & \\
+SMO 			& RMV &			 80.83 $\%$ & 5.36 &  73 & 7079 & 10618\\ 
+\hline
+\end{tabular}
+\caption{Results of the J48 Classification Algorithms with different Parameters}
+    RMV : ReplaceMissingValues,
+	Cor. C. Instance:  Correctly Classified Instances,
+	Tra. T : Training Time,
+	Val T: Validation Time,
+	Mean Abs. E. : Mean absolute error 
+\end{table}
+
 
 \subsection{ILPD data set}
 We decided to use the ILPD data set with the knowledge flow feature of Weka.
