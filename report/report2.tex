@@ -289,21 +289,21 @@ The nearest neighborhood algorithm IBk has almost the same performance like rand
 Algorithms & Pre- & Cor. C.& Tra. & Val. & Mean & Root Mean \\
  & process  & Instance & T(s) &  T(s) &  Abs. E. & Squared E. \\
 \hline & & & & & & \\
-Naive Bayes		& - &			80.97  $\%$ & 6.66 	& 85 & 4297  & 6445 \\ 
+Naive Bayes		& - &			85.369  $\%$ &  5.93	& 55 &  0.1509  & 0.3504 \\ 
 \hline & & & & & & \\
 Naive Bayes	 	& RMV &	85.32 $\%$ & 3.09 & 48	 &  0.1512  & 0.351  \\ 
 \hline & & & & & & \\
-J48	 		& - &			80.15  $\%$ & 6.62 & 79 &  2217 & 3325\\ 
+J48	 		& - &			 95.404  $\%$ & 227 & 1228 &  0.0709 & 0.194\\ 
 \hline 	& & & & & & \\
 J48  			& RMV &			95.41 $\%$ & 184.98 & 984 &  0.071 & 0.194 \\ 
 \hline & & & & & & \\
-RandomForest  	 & - &			80.49 $\%$ & 2.52 & 85 &  3403 & 5104 \\ 
+RandomForest  	 & - &			95.078 $\%$ & 115.84 & 85 &  612 & 0.1953 \\ 
 \hline & & & & & & \\
-RandomForest 	& RMV &			 95.10 $\%$ & 78.12 &  -  & 0.0723 & 0.1955 \\ 
+RandomForest 	& RMV &			 95.10 $\%$ & 78.12 &  577  & 0.0723 & 0.1955 \\ 
 \hline & & & & & & \\
 IBk 			& RMV &			94.47 $\%$ & 0.77 &  24048 & 0.0796 & 0.2082\\ 
 \hline & & & & & & \\
-SMO 			& RMV &			 80.83 $\%$ & 5.36 &  73 & 7079 & 10618\\ 
+SMO 			& RMV &			 $\%$ &  &    &   &  \\ 
 \hline
 \end{tabular}
 \caption{Results of the J48 Classification Algorithms with different Parameters}
@@ -313,6 +313,10 @@ SMO 			& RMV &			 80.83 $\%$ & 5.36 &  73 & 7079 & 10618\\
 	Val T: Validation Time,
 	Mean Abs. E. : Mean absolute error 
 \end{table}
+
+To use ReplaceMissingValues function or not does not effect much in this dataset. Every classification algorithm has also some rule to handle these missing values and they are not different then to use this function in the preprocess step. The classification algorithm take a little bit more time and a little bad performance.
+
+As a summary instead of Naive Bayes algorithm, the techniques has almost the same results, around 95 $\%$ of instances are classified correctly with these classification techniques. The one difference between these techniques is the time values and in this dataset, the validation and training time has much difference depend on an algorithm.  
 
 
 \subsection{ILPD data set}
