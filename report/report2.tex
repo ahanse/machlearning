@@ -214,10 +214,8 @@ Parameter& Process & Instance & T(s) &  T(s) & Error & Sq. Error \\
 1 	 & - &			80.9213		   $\%$ &	0.04		& 	3090	 & 	0.2243	 & 0.307  \\ 
 \hline & & & & & & \\	
 1 	 & 1-N c.  &		 80.9213		   $\%$ &	0.04		& 	7615	 & 	 0.2243	 &  0.307  \\ 
-\hline & & & & & & \\
-5	 & - &		  			 $\%$ &			& 		 & 		 &  \\ 
 \hline & & & & & & \\	
-10	 & - &		  			 $\%$ &			& 		 & 		 &  \\ 
+10	 & - &		  	80.9198		 $\%$ &	0.03		& 	3180  	&	0.2245	 & 	0.307 	  \\ 
 \hline
 \end{tabular}
 \caption{Results of the IBk Classification Algorithms with different Parameters}
@@ -275,6 +273,15 @@ training data. In that dataset, there are also many nominal attributes.. After
 run the Replacemissingvalues function, we have passed the section to classify
 of the \emph{Weka}.  We also compared the results without running the Replacemissingvalues, for all algorithms.
 
+First we have began with the naive bayes algorithm.  We have used 5-fold cross validation technique to split training and test data, it is different that the connect-4 dataset, because this dataset is the largest one and thought to use 5-fold cross validation to earn more time. The naive bayes algorithm has a quiet good performance, but when we compared with the other techniques, we had again the worsest result. Almost 85 $\%$ of the instances have correctly classified and just less than one minute including the validation.
+
+After that we have run the decision tree algorithm J48. We have used again the 5-fold cross validation test option. The classification has a perfect performance, this time more than 95 $\%$ of instance correctly classified. less than 14000 instance from the three hundred instances. The validation time was a little bit more than 15 minutes, that is also not much for in that large dataset. The tree has 2038 leaves and the size of the tree is 2527. 
+
+The random forest algorithm has the same performance with j48, for the random forest of 10 trees. We did not want to calculate for 50 trees, due to the long validation time. We have also used the 5-fold cross validation test option. 
+
+The nearest neighborhood algorithm IBk has almost the same performance like random forest and decision tree algorithms. But we had some problems, because the algorithm take much more time than the others. For that reason, we have split the test and training instance and calculate for one time. The training instance was the  66 $\%$ of instance and the reminder was the test data. However the algorithm take quiet much time to validate.(more than six and a half hour) Finally almost 95 $\%$ of instance is classified correctly. We could not try that algorithm for the without preprocess step.
+
+
 \begin{table}
 \begin{tabular}{|l| c | c | c | c |c |c |}
 
@@ -282,23 +289,19 @@ of the \emph{Weka}.  We also compared the results without running the Replacemis
 Algorithms & Pre- & Cor. C.& Tra. & Val. & Mean & Root Mean \\
  & process  & Instance & T(s) &  T(s) &  Abs. E. & Squared E. \\
 \hline & & & & & & \\
-Naive Bayes		& - &			80.97  $\%$ & 6.66 & 85 & 4297  & 6445 \\ 
+Naive Bayes		& - &			80.97  $\%$ & 6.66 	& 85 & 4297  & 6445 \\ 
 \hline & & & & & & \\
-Naive Bayes	 	& RMV &	80.06 $\%$ & 254.09 & 2755 & 3495  & 6989  \\ 
+Naive Bayes	 	& RMV &	85.32 $\%$ & 3.09 & 48	 &  0.1512  & 0.351  \\ 
 \hline & & & & & & \\
 J48	 		& - &			80.15  $\%$ & 6.62 & 79 &  2217 & 3325\\ 
 \hline 	& & & & & & \\
-J48  			& RMV &			80.98 $\%$ & 2.63 & 79 &  6543 & 9814 \\ 
+J48  			& RMV &			95.41 $\%$ & 184.98 & 984 &  0.071 & 0.194 \\ 
 \hline & & & & & & \\
 RandomForest  	 & - &			80.49 $\%$ & 2.52 & 85 &  3403 & 5104 \\ 
 \hline & & & & & & \\
-RandomForest 	& RMV &			 80.83 $\%$ & 5.36 &  73 & 7079 & 10618\\ 
+RandomForest 	& RMV &			 95.10 $\%$ & 78.12 &  -  & 0.0723 & 0.1955 \\ 
 \hline & & & & & & \\
-IBk  			 & - &			80.49 $\%$ & 2.52 & 85 &  3403 & 5104 \\ 
-\hline & & & & & & \\
-IBk 			& RMV &			 80.83 $\%$ & 5.36 &  73 & 7079 & 10618\\ 
-\hline & & & & & & \\
-SMO		  	 & - &			80.49 $\%$ & 2.52 & 85 &  3403 & 5104 \\ 
+IBk 			& RMV &			94.47 $\%$ & 0.77 &  24048 & 0.0796 & 0.2082\\ 
 \hline & & & & & & \\
 SMO 			& RMV &			 80.83 $\%$ & 5.36 &  73 & 7079 & 10618\\ 
 \hline
