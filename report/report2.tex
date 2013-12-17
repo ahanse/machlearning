@@ -35,6 +35,8 @@ Our choice was:
 (http://http://archive.ics.uci.edu/ml/datasets/Census-Income+%28KDD%29)
     \item "Connect-4 Data Set " \\
         (http://http://archive.ics.uci.edu/ml/datasets/Connect-4)
+    \item "ILPD (Indian Liver Patient Dataset) Data Set"\\
+        (http://archive.ics.uci.edu/ml/datasets/ILPD+%28Indian+Liver+Patient+Dataset%29)
     \item "Echocardiogram  Data Set" \\
         (http://http://archive.ics.uci.edu/ml/datasets/Echocardiogram)
 \end{enumerate}
@@ -50,7 +52,17 @@ These techniques were;
 \end{enumerate}
 
 \section{The Datasets}
-The census income data set contains almost three hundred thousands instances in two files and is the largest dataset among those three sets. The dataset has forthy dimensions, whereby some of the fields contain nominal data. There are two seperate files, one is for testing (1/3 of the data) and one is for training(2/3 of the data) . We have unified these two files in one. The data set contain missing values. We decided to use this dataset to test the performance of the methods. This dataset contains 1 class labels, yearly income. The income have been binned at the 50000 level to present binary classification. The goal field of this data, however, was drawn from the "total person income" field rather than the "adjusted gross income" and may, therefore, behave differently than the orginal ADULT goal field.
+The census income data set contains almost three hundred thousands instances in
+two files and is the largest dataset among those three sets. The dataset has
+forthy dimensions, whereby some of the fields contain nominal data. There are
+two seperate files, one is for testing (1/3 of the data) and one is for
+training(2/3 of the data) . We have unified these two files in one. The data set
+contain missing values. We decided to use this dataset to test the performance
+of the methods. This dataset contains 1 class labels, yearly income. The income
+have been binned at the 50000 level to present binary classification. The goal
+field of this data, however, was drawn from the "total person income" field
+rather than the "adjusted gross income" and may, therefore, behave differently
+than the orginal ADULT goal field.
 
 \subsection{Connect-4 data set}
 The connect-4 data set is the large dataset, has more than 67000 instances.
@@ -61,6 +73,13 @@ to test various methods to handle categorical data, with the 1-N coding. The
 database has 3 class labels, and a class labels which
 is the result of the connect-4 game, i.e. win or loss or draw.
 
+\subsection{ILPD (Indian Liver Patient Dataset) Data Set}
+the ILPD data set contains 583 instances with 10 attributes. Every instance represents a
+(potential) liver patient. The last attribute is a expert labeled field describing if the patient is 
+a liver patient or not. Except of the gender field are all attributes numerical
+and with 583 this dataset is a medium size dataset. It has no missing fields. 
+We used this dataset to try out the knowledge flow feature of Weka.
+
 \subsection{Ecocardiogram data set}
 The last and the smallest dataset is the echocardiogram data set. The
 echocardiogram has just 132 instances and also the same number of missing
@@ -68,7 +87,9 @@ values. Given the high percentage of
 missing values, this dataset is suited to test different methods to handle those
 missing values. The twelve attributes contain mainly numeric values. The second
 field and the last field can be the class value. All the patients suffered heart
-attacks at some point in the past. The second field is whether the patient still
+attacks at some point in the past. The first attribute is the number of month
+since the patient suffered from the heart attack. 
+The second field is whether the patient still
 alive or not. The survival and still-alive variables, when taken together,
 indicate whether a patient survived for at least one year following the heart
 attack (the last attribute). 
