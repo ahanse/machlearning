@@ -98,11 +98,34 @@ indicate whether a patient survived for at least one year following the heart
 attack (the last attribute). 
 
 \section{Classification Algorithms}
-    \subsection{ Naive Bayes}
-    \subsection{ Decision Tree (J48)}
-    \subsection{ Random Forest}
-    \subsection{ Nearest Neighbor (IBk)}
-    \subsection{ Support Vector Machine (SMO)}
+    \subsection{Naive Bayes}
+    Naive bayes is grounded in Baye's theorem which assumes the independence of
+    the attributes. This is the reason why this algorithm is calles naive. It is
+    a probabilistic classifier. 
+    \subsection{Decision Tree (J48)}
+    J48 is a implementation of an algorithm which trains a decision tree. The
+    algorithm which is implemented is C4.5 by Ross Quinlan. It uses the entropy
+    to define the gain for the split decission.
+    \subsection{Random Forest}
+    Random forests my fall in the same class as J48 (tree classifiers), but are
+    on the other hand also an instance of ensemble learning since it uses
+    bagging. It has two main parameters: the number of trees to learn and how
+    many features should be randomly selected for each tree. 
+    \subsection{Nearest Neighbor (IBk)}
+    In addition to the other algorithms we wanted to try an live algorithm.
+    Nearest Neighbor classsification interprets the features as a vector space
+    and uses a distance metric to look for the nearest neighbors for the
+    instance to classify. It has one main parameter: the number of neighbors to
+    search for. Because of the nature of this algorithm it is not necessary to
+    train a model. 
+    \subsection{Support Vector Machine (SMO)}
+    The support vector maschine algorithm searches a hyperplane which splits the
+    dataset into the different classes. This hyperplane should have be optimal
+    in the sense, that on each seide of the plane the space to the first feature
+    vector is maximised. Weka has multiple implementations. We decided to use
+    the Java implementation called SMO. It implements John Platt's sequential
+    minimal optimization algorithm. Another option would have been the
+    wraper around libsvm.
 
 \section{Experiments and Results for the Individual Datasets}
 
@@ -183,10 +206,10 @@ Process & Instance & T(s) &  T(s) & Error & Squared Error \\
 	Mean Abs. Error. : Mean absolute error 
 \end{table}
 
-Secondly, i will explain the J48 classification i.e. one of the decision tree
-algorithm. In that classification the algorithm has several parameters. I will
-pass the parameters that i explained above. minNumObj parameter set the minimum
-number of instances per leaf.(Default: 2) confidenceFactor sets confidence
+Secondly, we will explain the J48 classification i.e. one of the decision tree
+algorithm. In that classification the algorithm has several parameters. We will
+pass the parameters that we explained above. minNumObj parameter set the minimum
+number of instances per leaf. (Default: 2) confidenceFactor sets confidence
 threshold pruning, the default value is 0.25 and the smaller values incur more
 pruning. binarySplits has been used on nominal attributes when building the
 trees. seed parameter used for randomizing the data when reduced error pruning.
@@ -199,13 +222,13 @@ not reduce training error. useMDLcorrection is for finding splits on numeric
 attributes. useLaplace counts at leaves are smoothed based on Laplace.
 reducedErrorPruning reduced-error pruning is used instead of C.4.5 pruning. 
 
-I have changed some of the parameters of J48. When i increase the
-confidenceFactor, i achieved more leaves and the size of tree extends and it
-took more seconds, but had better correctly classified instances. After that i
-increase the number of instances per leaf with the parameter minNumObj, but the
-result was worser than the default value. i set subtreeRaising parameter false,
-the result was also not good and i change these to the default values. All of
-the result of J48 classification is in Table 1. Finally i have had the best
+We have changed some of the parameters of J48. When we increase the
+confidenceFactor, we achieve more leaves and the size of tree extends and it
+took more seconds, but had better correctly classified instances. After that we
+increased the number of instances per leaf with the parameter minNumObj, but the
+result was worser than the default value. We set subtreeRaising parameter false,
+the result was also not good and we changed these back to the default values. All of
+the result of J48 classification is in Table 1. Finally we have had the best
 result of the J48 algorithm with these instances J48 -C 0.5 -M 2, there is just
 one difference from the default values, i.e confidenceFactor = 0.5 instead of
 0.25. (Table 2) 
@@ -238,7 +261,7 @@ J48 -S -C 0.5 -M 2 	& -&			 80.83 $\%$ & 5.36 &  73 & 7079 & 10618\\
 \end{table}
 
 The third algorithm is the Randomforest algorithm. The technique has several
-parameters. I will pass again the parameters that i explained above. printTrees
+parameters. We will pass again the parameters that we explained above. printTrees
 parameter is to print the individual trees in the output. So, we do not need to
 show it and left it in the false for this dataset. Because there will be many
 leaf and the trees are quiet huge to show here. maxDepth is the maximum depth
@@ -280,7 +303,7 @@ Trees & Process & Instance & T(s) &  T(s) & Error  \\
 
 The fourth strategy is the  Nearest Neighbor algorithm, in Weka IBk. The
 technique has also several parameters. We have tested these algorithm for the
-KNN parameter ,which is most important parameter in that algorithm. The default
+KNN parameter, which is most important parameter in that algorithm. The default
 value of it is 1. The nearestNeighbourSearchAlgorithm parameter is the nearest
 neighbour search algorithm to use. The distance metric can be simple Euclidean
 distance, which is also the default value. The results of the  Nearest Neighbor
@@ -672,8 +695,23 @@ IBk          & -K 5 (rest default) & 81.68\% & 0.2375 & 0.3567 \\
 For the J48 and NaiveBayes algorithms the build in handling gives better
 results. For the support vector maschine algorithm we get exactly the same
 results and only the two variants of kNN classifiers give worse results.
-\subsection{Comparison}
+The reason why J48s native handling performed so much better may be grounded in
+the fact, that it can handle missing values during it's internal calculations by
+just not using them in the entropy calculation. This is propably much more
+accurat then the estimation by ReplaceMissingValues.
 
 \section{Conclusion}
+Similar to Exercise 1 we had problems with the runtime of the support vector
+algorithms. A different choice regarding the implementation may have helped
+here. When we could use SVMs the results were very good. J48, although fast,
+didn't result in good classifier. Similare to this behaved the naive bayes
+algorithm.
+
+RandomForest tended to give good result, although the results depended strongly
+on the parameters. 
+
+Futhermore the implementations in Weka tend do very many thing automaticaly,
+such as scaling and handling of missing values and nominal values for algorithms
+which can't handle those. This automatic handling tends to give good results.
 
 \end{document}
