@@ -71,7 +71,11 @@ public class MainPanel extends JFrame implements ActionListener {
 				try {
 					BufferedReader reader = new BufferedReader(new FileReader(file));
 					instances = new Instances(reader);
-					plot.addPlot(new PlotData2D(instances));
+					PlotData2D plotData2d = new PlotData2D(instances);
+					plot.addPlot(plotData2d);
+					plot.setXindex(0);
+					plot.setYindex(1);
+					plot.setCindex(2);
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
