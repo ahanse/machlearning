@@ -71,8 +71,51 @@ public class MainPanel extends JFrame implements ActionListener {
 				try {
 					BufferedReader reader = new BufferedReader(new FileReader(file));
 					instances = new Instances(reader);
-					PlotData2D plotData2d = new PlotData2D(instances);
-					plot.addPlot(plotData2d);
+
+					
+
+
+					instances.setClassIndex(instances.numAttributes() - 1);
+
+
+                     AdaBoostM1 adaboost = new AdaBoostM1();
+                     adaboost.setNumIterations(15);
+                     adaboost.setWeightThreshold(100);
+                     adaboost.setSeed(1);
+                     // classifier
+                     
+                     MultilayerPerceptron baseClassifier = new MultilayerPerceptron();
+                     
+                     baseClassifier.setHiddenLayers("0");
+                     baseClassifier.setValidationThreshold(20);
+                     baseClassifier.setValidationSetSize(0);
+                     baseClassifier.setSeed(0);
+                     baseClassifier.setTrainingTime(500);
+                     baseClassifier.setLearningRate(0.3);
+                     baseClassifier.setMomentum(0.2);
+                     
+                     adaboost.setClassifier(baseClassifier);
+
+                     // train and make predictions
+
+                     adaboost.buildClassifier(instances);
+                     
+                     
+
+
+                     
+                     // evaluate classifier and print some statistics
+                     Evaluation eval = new Evaluation(instances);
+                     eval.evaluateModel(adaboost, instances);
+                     System.out.println(adaboost.toString());
+
+
+
+
+					
+					
+					
+					plot.addPlot(new PlotData2D(instances));
 					plot.setXindex(0);
 					plot.setYindex(1);
 					plot.setCindex(2);
